@@ -1,0 +1,37 @@
+[
+  {
+    "id": "penemuan",
+    "title": "Penemuan",
+    "year": "3 Juni 1998",
+    "description": "Candi Klodangan ditemukan secara tidak sengaja oleh warga setempat (petani) saat mengolah lahan persawahan di Dusun Klodangan, Desa Sendangtirto, Kecamatan Berbah, Kabupaten Sleman. Penemuan ini langsung dilaporkan kepada pihak berwenang untuk ditindaklanjuti secara arkeologis.",
+    "icon": "🔍"
+  },
+  {
+    "id": "ekskavasi-1",
+    "title": "Ekskavasi Tahap I",
+    "year": "20–29 Juli 1998",
+    "description": "Tim dari Suaka Peninggalan Sejarah dan Purbakala (SPSP) DIY melakukan ekskavasi penyelamatan tahap pertama. Pada tahap ini, fondasi candi berukuran 7,5 x 7,5 meter berhasil diungkap beserta sisa-sisa dinding bagian bawah dari batu andesit.",
+    "icon": "⛏️"
+  },
+  {
+    "id": "ekskavasi-2",
+    "title": "Ekskavasi Tahap II",
+    "year": "14–19 Februari 2000",
+    "description": "Ekskavasi tahap kedua dilakukan untuk memperluas area penggalian dan mendokumentasikan temuan secara lebih lengkap. Tidak ditemukan arca, relief, maupun prasasti — sehingga fungsi dan corak keagamaan candi belum bisa dipastikan.",
+    "icon": "📋"
+  },
+  {
+    "id": "penetapan",
+    "title": "Penetapan Cagar Budaya",
+    "year": "Pasca-ekskavasi",
+    "description": "Candi Klodangan ditetapkan sebagai Cagar Budaya yang dilindungi undang-undang. Pengelolaan situs berada di bawah Balai Pelestarian Cagar Budaya (BPCB) Daerah Istimewa Yogyakarta, bagian dari Direktorat Jenderal Kebudayaan.",
+    "icon": "📜"
+  },
+  {
+    "id": "kondisi-saat-ini",
+    "title": "Kondisi Saat Ini",
+    "year": "Sekarang",
+    "description": "Saat ini, situs Candi Klodangan hanya menyisakan struktur fondasi dan sebagian kecil dinding bawah. Candi ini diperkirakan berasal dari abad ke-9 hingga ke-10 Masehi, sezaman dengan era Kerajaan Mataram Kuno. Bentuk asli candi belum diketahui dan diduga tidak pernah selesai dibangun.",
+    "icon": "🏛️"
+  }
+]

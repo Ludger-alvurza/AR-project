@@ -1,0 +1,42 @@
+[
+  {
+    "id": "fondasi-candi",
+    "title": "Fondasi Candi",
+    "qrUrl": "/ar?point=fondasi-candi",
+    "gps": { "lat": -7.812667, "lng": 110.426289 },
+    "shortInfo": "Fondasi candi berukuran 7,5 x 7,5 meter, berada 1,2 meter di bawah permukaan tanah. Fondasi ini menjadi bukti utama keberadaan candi yang diperkirakan berasal dari abad ke-9 hingga ke-10 Masehi.",
+    "image": "/images/points/fondasi.jpg",
+    "edukasiId": "fondasi-candi",
+    "icon": "🏛️"
+  },
+  {
+    "id": "batu-penyusun",
+    "title": "Batu Penyusun",
+    "qrUrl": "/ar?point=batu-penyusun",
+    "gps": { "lat": -7.812690, "lng": 110.426310 },
+    "shortInfo": "Susunan batu andesit yang menjadi material dasar pembangunan candi. Batu-batu ini menunjukkan teknik konstruksi khas masa Hindu-Buddha di Jawa.",
+    "image": "/images/points/batu-penyusun.jpg",
+    "edukasiId": "batu-penyusun",
+    "icon": "🪨"
+  },
+  {
+    "id": "area-ekskavasi",
+    "title": "Area Ekskavasi",
+    "qrUrl": "/ar?point=area-ekskavasi",
+    "gps": { "lat": -7.812650, "lng": 110.426270 },
+    "shortInfo": "Area yang telah digali oleh tim arkeologi Suaka Peninggalan Sejarah dan Purbakala DIY untuk mengungkap struktur candi yang terkubur.",
+    "image": "/images/points/ekskavasi.jpg",
+    "edukasiId": "area-ekskavasi",
+    "icon": "⛏️"
+  },
+  {
+    "id": "status-cagar-budaya",
+    "title": "Status Cagar Budaya",
+    "qrUrl": "/ar?point=status-cagar-budaya",
+    "gps": { "lat": -7.812667, "lng": 110.426300 },
+    "shortInfo": "Dikelola oleh Balai Pelestarian Cagar Budaya (BPCB) DIY sebagai warisan budaya yang dilindungi undang-undang.",
+    "image": "/images/points/cagar-budaya.jpg",
+    "edukasiId": "status-cagar-budaya",
+    "icon": "📜"
+  }
+]
