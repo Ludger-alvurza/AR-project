@@ -3,8 +3,8 @@
     "id": "fondasi-candi",
     "title": "Fondasi Candi",
     "qrUrl": "/ar?point=fondasi-candi",
-    "gps": { "lat": 0.8325, "lng": 109.4865 },
-    "shortInfo": "Fondasi candi berukuran 7,5 x 7,5 meter, berada 1,2 meter di bawah permukaan tanah. Fondasi ini menjadi bukti utama keberadaan candi yang diperkirakan berasal dari abad ke-9 hingga ke-10 Masehi.",
+    "gps": { "lat": 0.832561, "lng": 109.486389 },
+    "shortInfo": "Fondasi candi berukuran 7,5 x 7,5 meter, berada 1,2 meter di bawah permukaan tanah asli. Diperkirakan dibangun pada abad IX-X Masehi.",
     "image": "/images/points/fondasi.jpg",
     "edukasiId": "fondasi-candi",
     "icon": "🏛️"
@@ -13,8 +13,8 @@
     "id": "batu-penyusun",
     "title": "Batu Penyusun",
     "qrUrl": "/ar?point=batu-penyusun",
-    "gps": { "lat": 0.8321, "lng": 109.4868 },
-    "shortInfo": "Susunan batu andesit yang menjadi material dasar pembangunan candi. Batu-batu ini menunjukkan teknik konstruksi khas masa Hindu-Buddha di Jawa.",
+    "gps": { "lat": 0.832111, "lng": 109.486839 },
+    "shortInfo": "Susunan batu andesit yang menjadi material utama pembangunan candi. Batu-batu ini tersusun rapi membentuk dinding bawah struktur candi.",
     "image": "/images/points/batu-penyusun.jpg",
     "edukasiId": "batu-penyusun",
     "icon": "🪨"
@@ -23,8 +23,8 @@
     "id": "area-ekskavasi",
     "title": "Area Ekskavasi",
     "qrUrl": "/ar?point=area-ekskavasi",
-    "gps": { "lat": 0.8318, "lng": 109.4865 },
-    "shortInfo": "Area yang telah digali oleh tim arkeologi Suaka Peninggalan Sejarah dan Purbakala DIY untuk mengungkap struktur candi yang terkubur.",
+    "gps": { "lat": 0.831661, "lng": 109.486389 },
+    "shortInfo": "Area penggalian arkeologi yang mengungkap struktur candi. Ekskavasi dilakukan oleh tim Balai Pelestarian Cagar Budaya DIY.",
     "image": "/images/points/ekskavasi.jpg",
     "edukasiId": "area-ekskavasi",
     "icon": "⛏️"
@@ -33,8 +33,8 @@
     "id": "status-cagar-budaya",
     "title": "Status Cagar Budaya",
     "qrUrl": "/ar?point=status-cagar-budaya",
-    "gps": { "lat": 0.8321, "lng": 109.4862 },
-    "shortInfo": "Dikelola oleh Balai Pelestarian Cagar Budaya (BPCB) DIY sebagai warisan budaya yang dilindungi undang-undang.",
+    "gps": { "lat": 0.832111, "lng": 109.485939 },
+    "shortInfo": "Candi Klodangan ditetapkan sebagai Cagar Budaya dan dikelola oleh Balai Pelestarian Cagar Budaya (BPCB) Daerah Istimewa Yogyakarta.",
     "image": "/images/points/cagar-budaya.jpg",
     "edukasiId": "status-cagar-budaya",
     "icon": "📜"

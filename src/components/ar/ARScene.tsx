@@ -33,28 +33,13 @@ export default function ARScene({
 
     const startCamera = async () => {
       try {
-        // Coba kamera belakang dulu (untuk HP di lokasi candi)
-        let stream: MediaStream;
-        try {
-          stream = await navigator.mediaDevices.getUserMedia({
-            video: {
-              facingMode: { exact: "environment" },
-              width: { ideal: 1280 },
-              height: { ideal: 720 },
-            },
-          });
-        } catch {
-          // Fallback: kamera belakang tidak ada (desktop/laptop) → pakai kamera apapun yang tersedia
-          console.warn(
-            "Kamera belakang tidak tersedia, mencoba kamera lain...",
-          );
-          stream = await navigator.mediaDevices.getUserMedia({
-            video: {
-              width: { ideal: 1280 },
-              height: { ideal: 720 },
-            },
-          });
-        }
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: "environment",
+            width: { ideal: 1280 },
+            height: { ideal: 720 },
+          },
+        });
 
         if (!mounted) {
           stream.getTracks().forEach((t) => t.stop());
@@ -63,8 +48,18 @@ export default function ARScene({
 
         streamRef.current = stream;
         if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-          await videoRef.current.play();
+          const video = videoRef.current;
+          video.srcObject = stream;
+          // Pastikan attribute set sebelum play — penting untuk mobile
+          video.setAttribute("playsinline", "true");
+          video.setAttribute("webkit-playsinline", "true");
+          video.muted = true;
+          // Tunggu metadata loaded sebelum play
+          await new Promise<void>((resolve, reject) => {
+            video.onloadedmetadata = () => resolve();
+            setTimeout(() => reject(new Error("metadata timeout")), 5000);
+          });
+          await video.play();
         }
         setIsReady(true);
       } catch (err) {
@@ -220,8 +215,10 @@ export default function ARScene({
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
         playsInline
+        webkit-playsinline="true"
         muted
         autoPlay
+        style={{ transform: "scaleX(1)" }}
       />
 
       {/* AR Overlay — Position info points based on compass bearing */}
