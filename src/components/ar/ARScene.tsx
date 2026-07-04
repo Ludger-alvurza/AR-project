@@ -37,6 +37,19 @@ export default function ARScene({
   useEffect(() => {
     let mounted = true;
 
+    // Helper: getUserMedia dengan timeout biar gak hang selamanya
+    const getUserMediaWithTimeout = (
+      constraints: MediaStreamConstraints,
+      ms: number,
+    ): Promise<MediaStream> => {
+      return Promise.race([
+        navigator.mediaDevices.getUserMedia(constraints),
+        new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error(`timeout ${ms}ms`)), ms),
+        ),
+      ]);
+    };
+
     const startCamera = async () => {
       addLog("Memulai kamera...");
 
@@ -50,14 +63,21 @@ export default function ARScene({
 
       addLog("getUserMedia tersedia ✓");
 
+      // Delay 800ms — beri waktu kamera release setelah permission gate
+      await new Promise((r) => setTimeout(r, 800));
+      addLog("Kamera siap dibuka...");
+
       let stream: MediaStream | null = null;
 
       // Coba 1: kamera belakang exact
       try {
         addLog("Mencoba kamera belakang...");
-        stream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: { exact: "environment" } },
-        });
+        stream = await getUserMediaWithTimeout(
+          {
+            video: { facingMode: { exact: "environment" } },
+          },
+          6000,
+        );
         addLog("Kamera belakang OK ✓");
       } catch (e1) {
         addLog(`Kamera belakang gagal: ${e1 instanceof Error ? e1.name : e1}`);
@@ -65,9 +85,12 @@ export default function ARScene({
         // Coba 2: kamera belakang tanpa exact
         try {
           addLog("Mencoba facingMode environment...");
-          stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: "environment" },
-          });
+          stream = await getUserMediaWithTimeout(
+            {
+              video: { facingMode: "environment" },
+            },
+            6000,
+          );
           addLog("environment OK ✓");
         } catch (e2) {
           addLog(`environment gagal: ${e2 instanceof Error ? e2.name : e2}`);
@@ -75,7 +98,7 @@ export default function ARScene({
           // Coba 3: video: true — paling simpel
           try {
             addLog("Mencoba video: true...");
-            stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            stream = await getUserMediaWithTimeout({ video: true }, 6000);
             addLog("video:true OK ✓");
           } catch (e3) {
             const msg =

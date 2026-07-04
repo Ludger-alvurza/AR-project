@@ -22,7 +22,7 @@ function ARPageContent() {
   const [points, setPoints] = useState<ARPoint[]>([]);
   const [activePoint, setActivePoint] = useState<ARPoint | null>(null);
   const [selectedPoint, setSelectedPoint] = useState<ARPoint | null>(null);
-  const [permissionsGranted, setPermissionsGranted] = useState(true);
+  const [permissionsGranted, setPermissionsGranted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   // Load AR points data
@@ -72,7 +72,11 @@ function ARPageContent() {
             Titik Tidak Ditemukan
           </h2>
           <p className="text-stone-candi mb-6">
-            Parameter <code className="bg-green-light px-2 py-1 rounded text-green-primary text-sm">?point={pointId}</code> tidak valid.
+            Parameter{" "}
+            <code className="bg-green-light px-2 py-1 rounded text-green-primary text-sm">
+              ?point={pointId}
+            </code>{" "}
+            tidak valid.
           </p>
           <Link href="/" className="btn-primary">
             Kembali ke Beranda
