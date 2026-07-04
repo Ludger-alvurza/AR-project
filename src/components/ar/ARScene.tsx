@@ -116,6 +116,7 @@ export default function ARScene({
         <div className="absolute inset-0 pointer-events-none">
           {points.map((point, index) => {
             const xPercent = 20 + (index / Math.max(points.length - 1, 1)) * 60;
+            const isActive = point.id === activePointId;
             return (
               <div
                 key={point.id}
@@ -130,8 +131,20 @@ export default function ARScene({
                   onClick={() => onPointClick(point)}
                   className="flex flex-col items-center gap-1"
                 >
-                  <span className="text-3xl drop-shadow-lg">{point.icon}</span>
-                  <span className="bg-black/60 text-white text-xs px-2 py-1 rounded-full">
+                  <span
+                    className={`text-3xl drop-shadow-lg transition-transform ${
+                      isActive ? "scale-125" : ""
+                    }`}
+                  >
+                    {point.icon}
+                  </span>
+                  <span
+                    className={`text-xs px-2 py-1 rounded-full ${
+                      isActive
+                        ? "bg-white text-black font-semibold"
+                        : "bg-black/60 text-white"
+                    }`}
+                  >
                     {point.title}
                   </span>
                 </button>
