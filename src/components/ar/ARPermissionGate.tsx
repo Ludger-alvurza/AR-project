@@ -2,15 +2,8 @@
 
 import { useState, useCallback } from "react";
 
-// Extend DeviceOrientationEvent for iOS Safari permission API
 interface DeviceOrientationEventiOS extends DeviceOrientationEvent {
   requestPermission?: () => Promise<string>;
-}
-
-interface PermissionError {
-  name?: string;
-  code?: number;
-  message?: string;
 }
 
 interface ARPermissionGateProps {
@@ -24,18 +17,35 @@ export default function ARPermissionGate({
 }: ARPermissionGateProps) {
   const [status, setStatus] = useState<"idle" | "requesting" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [debugMsg, setDebugMsg] = useState("");
 
   const requestPermissions = useCallback(async () => {
     setStatus("requesting");
     setErrorMsg("");
+    setDebugMsg("");
 
     try {
-      // 1. Request camera permission
-      await navigator.mediaDevices.getUserMedia({
-        video: { facingMode: "environment" },
-      });
+      // 1. Request camera — dengan fallback
+      setDebugMsg("Meminta izin kamera...");
+      let stream: MediaStream | null = null;
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: { exact: "environment" } },
+        });
+      } catch {
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "environment" },
+          });
+        } catch {
+          stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        }
+      }
+      // Stop stream — ARScene akan buka ulang sendiri
+      stream?.getTracks().forEach((t) => t.stop());
+      setDebugMsg("Kamera OK ✓ Meminta GPS...");
 
-      // 2. Request GPS permission
+      // 2. Request GPS
       await new Promise<GeolocationPosition>((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(resolve, reject, {
           enableHighAccuracy: true,
@@ -43,55 +53,61 @@ export default function ARPermissionGate({
           maximumAge: 0,
         });
       });
+      setDebugMsg("GPS OK ✓ Mengecek kompas...");
 
-      // 3. iOS Safari: Request DeviceOrientation permission
-      const DeviceOrientationEvt = DeviceOrientationEvent as unknown as DeviceOrientationEventiOS;
-      if (
-        typeof DeviceOrientationEvt.requestPermission === "function"
-      ) {
-        const permissionState = await DeviceOrientationEvt.requestPermission();
-        if (permissionState !== "granted") {
+      // 3. iOS Safari DeviceOrientation permission (opsional)
+      const DeviceOrientationEvt =
+        DeviceOrientationEvent as unknown as DeviceOrientationEventiOS & {
+          requestPermission?: () => Promise<string>;
+        };
+      if (typeof DeviceOrientationEvt.requestPermission === "function") {
+        const state = await DeviceOrientationEvt.requestPermission();
+        if (state !== "granted") {
           throw new Error("Izin sensor orientasi ditolak.");
         }
       }
 
-      // All permissions granted
+      setDebugMsg("Semua izin OK ✓");
       onPermissionsGranted();
     } catch (err: unknown) {
-      const e = err as PermissionError;
+      const e = err as { name?: string; code?: number; message?: string };
       setStatus("error");
 
-      if (e.name === "NotAllowedError") {
+      if (e.name === "NotAllowedError" || e.name === "PermissionDeniedError") {
         setErrorMsg(
-          "Izin kamera ditolak. Silakan aktifkan izin kamera di pengaturan browser Anda."
+          "Izin kamera ditolak. Tap ikon gembok di address bar → izinkan kamera, lalu coba lagi.",
+        );
+      } else if (e.name === "NotFoundError") {
+        setErrorMsg("Kamera tidak ditemukan di perangkat ini.");
+      } else if (e.name === "NotReadableError" || e.name === "AbortError") {
+        setErrorMsg(
+          "Kamera sedang dipakai aplikasi lain. Tutup aplikasi kamera lain lalu coba lagi.",
         );
       } else if (e.code === 1) {
         setErrorMsg(
-          "Izin lokasi ditolak. Silakan aktifkan izin lokasi di pengaturan browser Anda."
+          "Izin lokasi ditolak. Aktifkan izin lokasi di pengaturan browser.",
         );
       } else if (e.code === 2) {
         setErrorMsg(
-          "Lokasi tidak tersedia. Pastikan GPS di perangkat Anda aktif."
+          "GPS tidak tersedia. Pastikan GPS aktif dan coba di luar ruangan.",
         );
       } else if (e.code === 3) {
-        setErrorMsg(
-          "Timeout saat mencari lokasi. Pastikan Anda berada di luar ruangan dengan sinyal GPS yang baik."
-        );
+        setErrorMsg("GPS timeout. Pastikan sinyal GPS baik lalu coba lagi.");
       } else {
-        setErrorMsg(e.message || "Terjadi kesalahan. Silakan coba lagi.");
+        setErrorMsg(
+          `Error: ${e.name || ""} ${e.message || "Silakan coba lagi."}`,
+        );
       }
     }
   }, [onPermissionsGranted]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center permission-gate p-6" id="permission-gate">
+    <div className="fixed inset-0 z-50 flex items-center justify-center permission-gate p-6">
       <div className="max-w-md w-full bg-white rounded-3xl shadow-xl p-8 text-center">
-        {/* Icon */}
         <div className="w-20 h-20 rounded-full bg-green-light mx-auto mb-6 flex items-center justify-center">
           <span className="text-4xl animate-float">📸</span>
         </div>
 
-        {/* Title */}
         <h2 className="font-display font-bold text-dark text-2xl mb-2">
           Aktifkan AR
         </h2>
@@ -100,32 +116,35 @@ export default function ARPermissionGate({
           <span className="font-semibold text-green-primary">{pointTitle}</span>
         </p>
 
-        {/* Requirements */}
         <div className="bg-green-pale rounded-2xl p-4 mb-6 text-left">
           <p className="text-xs font-semibold text-green-primary mb-3 uppercase tracking-wider">
             Dibutuhkan:
           </p>
           <ul className="space-y-2">
-            <li className="flex items-center gap-2 text-sm text-dark">
-              <span className="w-6 h-6 rounded-full bg-green-light flex items-center justify-center text-xs">
-                📷
-              </span>
-              Akses kamera belakang
-            </li>
-            <li className="flex items-center gap-2 text-sm text-dark">
-              <span className="w-6 h-6 rounded-full bg-green-light flex items-center justify-center text-xs">
-                📍
-              </span>
-              Akses lokasi GPS
-            </li>
-            <li className="flex items-center gap-2 text-sm text-dark">
-              <span className="w-6 h-6 rounded-full bg-green-light flex items-center justify-center text-xs">
-                🧭
-              </span>
-              Sensor orientasi (kompas)
-            </li>
+            {[
+              { icon: "📷", label: "Akses kamera belakang" },
+              { icon: "📍", label: "Akses lokasi GPS" },
+              { icon: "🧭", label: "Sensor orientasi (kompas)" },
+            ].map(({ icon, label }) => (
+              <li
+                key={label}
+                className="flex items-center gap-2 text-sm text-dark"
+              >
+                <span className="w-6 h-6 rounded-full bg-green-light flex items-center justify-center text-xs">
+                  {icon}
+                </span>
+                {label}
+              </li>
+            ))}
           </ul>
         </div>
+
+        {/* Debug info saat requesting */}
+        {status === "requesting" && debugMsg && (
+          <div className="bg-green-pale rounded-xl p-3 mb-4">
+            <p className="text-green-primary text-xs font-mono">{debugMsg}</p>
+          </div>
+        )}
 
         {/* Error message */}
         {status === "error" && (
@@ -134,12 +153,10 @@ export default function ARPermissionGate({
           </div>
         )}
 
-        {/* Action button */}
         <button
           onClick={requestPermissions}
           disabled={status === "requesting"}
           className="btn-primary w-full text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed"
-          id="btn-grant-permissions"
         >
           {status === "requesting" ? (
             <span className="flex items-center justify-center gap-2">
@@ -154,8 +171,7 @@ export default function ARPermissionGate({
         </button>
 
         <p className="text-stone-candi/60 text-xs mt-4">
-          Izin ini hanya digunakan selama Anda menggunakan fitur AR dan tidak
-          disimpan.
+          Izin ini hanya digunakan selama Anda menggunakan fitur AR.
         </p>
       </div>
     </div>
