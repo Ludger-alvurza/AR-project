@@ -81,7 +81,10 @@ export default function ARScene({
             const msg =
               e3 instanceof Error ? `${e3.name}: ${e3.message}` : String(e3);
             addLog(`Semua gagal: ${msg}`);
-            if (mounted) setError(`Kamera tidak bisa dibuka: ${msg}`);
+            if (mounted) {
+              alert(`CAMERA ERROR: ${msg}`);
+              setError(`Kamera tidak bisa dibuka: ${msg}`);
+            }
             return;
           }
         }
