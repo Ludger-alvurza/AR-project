@@ -33,13 +33,28 @@ export default function ARScene({
 
     const startCamera = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: {
-            facingMode: "environment",
-            width: { ideal: 1280 },
-            height: { ideal: 720 },
-          },
-        });
+        // Coba kamera belakang dulu (untuk HP di lokasi candi)
+        let stream: MediaStream;
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+              facingMode: { exact: "environment" },
+              width: { ideal: 1280 },
+              height: { ideal: 720 },
+            },
+          });
+        } catch {
+          // Fallback: kamera belakang tidak ada (desktop/laptop) → pakai kamera apapun yang tersedia
+          console.warn(
+            "Kamera belakang tidak tersedia, mencoba kamera lain...",
+          );
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+              width: { ideal: 1280 },
+              height: { ideal: 720 },
+            },
+          });
+        }
 
         if (!mounted) {
           stream.getTracks().forEach((t) => t.stop());
@@ -54,7 +69,9 @@ export default function ARScene({
         setIsReady(true);
       } catch (err) {
         if (mounted) {
-          setError("Gagal mengakses kamera. Pastikan izin kamera sudah diberikan.");
+          setError(
+            "Gagal mengakses kamera. Pastikan izin kamera sudah diberikan.",
+          );
           console.error("Camera error:", err);
         }
       }
@@ -92,7 +109,7 @@ export default function ARScene({
         enableHighAccuracy: true,
         maximumAge: 5000,
         timeout: 15000,
-      }
+      },
     );
 
     return () => {
@@ -108,15 +125,24 @@ export default function ARScene({
       // webkitCompassHeading for iOS, alpha for Android
       const compassHeading =
         (event as DeviceOrientationEvent & { webkitCompassHeading?: number })
-          .webkitCompassHeading ?? (event.alpha !== null ? 360 - event.alpha : 0);
+          .webkitCompassHeading ??
+        (event.alpha !== null ? 360 - event.alpha : 0);
       setHeading(compassHeading);
     };
 
-    window.addEventListener("deviceorientationabsolute", handleOrientation, true);
+    window.addEventListener(
+      "deviceorientationabsolute",
+      handleOrientation,
+      true,
+    );
     window.addEventListener("deviceorientation", handleOrientation, true);
 
     return () => {
-      window.removeEventListener("deviceorientationabsolute", handleOrientation, true);
+      window.removeEventListener(
+        "deviceorientationabsolute",
+        handleOrientation,
+        true,
+      );
       window.removeEventListener("deviceorientation", handleOrientation, true);
     };
   }, []);
@@ -138,7 +164,7 @@ export default function ARScene({
 
       return (toDeg(Math.atan2(y, x)) + 360) % 360;
     },
-    []
+    [],
   );
 
   // Calculate distance between two GPS coordinates (meters)
@@ -158,7 +184,7 @@ export default function ARScene({
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       return R * c;
     },
-    []
+    [],
   );
 
   if (error) {
@@ -218,7 +244,10 @@ export default function ARScene({
             const xPercent = 50 + (relativeAngle / 60) * 50;
 
             // Scale based on distance
-            const distScale = Math.max(0.5, Math.min(1.5, 100 / Math.max(distance, 1)));
+            const distScale = Math.max(
+              0.5,
+              Math.min(1.5, 100 / Math.max(distance, 1)),
+            );
             const yPercent = 30 + (1 / distScale) * 15;
 
             return (
