@@ -9,10 +9,10 @@ import ARPermissionGate from "@/components/ar/ARPermissionGate";
 import ARInfoPoint from "@/components/ar/ARInfoPoint";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 
-// Dynamic import ARScene — client only, no SSR
+// Dynamic import — ARScene uses browser-only APIs (camera, GPS, compass)
 const ARScene = dynamic(() => import("@/components/ar/ARScene"), {
   ssr: false,
-  loading: () => <LoadingScreen message="Memuat AR Engine..." />,
+  loading: () => <LoadingScreen message="Menyiapkan kamera..." />,
 });
 
 function ARPageContent() {
@@ -27,7 +27,10 @@ function ARPageContent() {
 
   // Load AR points data
   useEffect(() => {
-    fetch("/data/ar-points.json")
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
+    fetch("/data/ar-points.json", { signal: controller.signal })
       .then((res) => res.json())
       .then((data: ARPoint[]) => {
         setPoints(data);
@@ -36,9 +39,12 @@ function ARPageContent() {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.error("Failed to load AR points:", err);
+        if (err.name !== "AbortError") {
+          console.error("Failed to load AR points:", err);
+        }
         setIsLoading(false);
-      });
+      })
+      .finally(() => clearTimeout(timeoutId));
   }, [pointId]);
 
   const handlePermissionsGranted = useCallback(() => {
