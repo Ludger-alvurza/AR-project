@@ -22,7 +22,7 @@ function ARPageContent() {
   const [points, setPoints] = useState<ARPoint[]>([]);
   const [activePoint, setActivePoint] = useState<ARPoint | null>(null);
   const [selectedPoint, setSelectedPoint] = useState<ARPoint | null>(null);
-  const [permissionsGranted, setPermissionsGranted] = useState(true);
+  const [permissionsGranted, setPermissionsGranted] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   // Load AR points data
