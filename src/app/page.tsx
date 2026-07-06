@@ -51,6 +51,9 @@ export default async function HomePage() {
               <Link href="/timeline" className="btn-primary text-lg px-8 py-4" id="cta-timeline">
                 📅 Lihat Timeline Situs
               </Link>
+              <Link href="/jelajah-virtual" className="btn-primary text-lg px-8 py-4" id="cta-jelajah-virtual">
+                🗺️ Jelajah Virtual
+              </Link>
               <Link href="#cara-pakai" className="btn-secondary text-lg px-8 py-4" id="cta-cara-pakai">
                 📱 Cara Menggunakan
               </Link>

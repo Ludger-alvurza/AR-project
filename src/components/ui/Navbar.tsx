@@ -28,6 +28,13 @@ export default function Navbar() {
               Timeline
             </Link>
             <Link
+              href="/jelajah-virtual"
+              className="px-4 py-2 rounded-lg text-dark font-medium hover:bg-green-light hover:text-green-primary transition-all duration-200"
+              id="nav-jelajah-virtual"
+            >
+              Jelajah Virtual
+            </Link>
+            <Link
               href="/#tentang"
               className="px-4 py-2 rounded-lg text-dark font-medium hover:bg-green-light hover:text-green-primary transition-all duration-200"
               id="nav-tentang"
@@ -84,6 +91,14 @@ export default function Navbar() {
               id="nav-mobile-timeline"
             >
               📅 Timeline Situs
+            </Link>
+            <Link
+              href="/jelajah-virtual"
+              onClick={() => setIsOpen(false)}
+              className="px-4 py-3 rounded-lg text-dark font-medium hover:bg-green-light transition-colors"
+              id="nav-mobile-jelajah"
+            >
+              🗺️ Jelajah Virtual
             </Link>
             <Link
               href="/#tentang"

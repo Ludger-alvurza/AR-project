@@ -1,0 +1,47 @@
+[
+  {
+    "id": "fondasi-utama",
+    "title": "Fondasi Utama",
+    "icon": "🏛️",
+    "position": { "x": 48, "y": 52 },
+    "shortInfo": "Fondasi candi berukuran 7,5 × 7,5 meter ini berada 1,2 meter di bawah permukaan tanah asli. Struktur persegi ini merupakan dasar bangunan candi yang diperkirakan dibangun pada abad IX-X Masehi, sezaman dengan era Kerajaan Mataram Kuno.",
+    "detailInfo": "Fondasi ini ditemukan secara tidak sengaja oleh petani pada 3 Juni 1998. Berdasarkan analisis arkeologis, fondasi ini menunjukkan teknik konstruksi khas candi-candi Hindu dari periode Mataram Kuno. Ukurannya yang 7,5 × 7,5 meter menunjukkan bahwa candi ini tergolong berukuran sedang untuk periode tersebut.",
+    "edukasiId": "fondasi-candi"
+  },
+  {
+    "id": "susunan-batu",
+    "title": "Susunan Batu Andesit",
+    "icon": "🪨",
+    "position": { "x": 25, "y": 68 },
+    "shortInfo": "Batu andesit yang menjadi material utama pembangunan candi. Batu-batu ini tersusun rapi membentuk dinding bawah struktur candi, menunjukkan keahlian tinggi para pembangunnya.",
+    "detailInfo": "Batu andesit dipilih karena kekuatan dan ketahanannya terhadap cuaca. Teknik penyusunan batu tanpa perekat (dry-stone masonry) yang digunakan menunjukkan presisi tinggi arsitektur Mataram Kuno. Setiap batu dipotong dan diasah agar pas satu sama lain.",
+    "edukasiId": "batu-penyusun"
+  },
+  {
+    "id": "area-ekskavasi",
+    "title": "Area Ekskavasi",
+    "icon": "⛏️",
+    "position": { "x": 72, "y": 30 },
+    "shortInfo": "Area penggalian arkeologi yang dilakukan oleh tim Balai Pelestarian Cagar Budaya (BPCB) DIY. Ekskavasi ini mengungkap struktur fondasi candi yang sebelumnya terkubur di bawah tanah.",
+    "detailInfo": "Proses ekskavasi dilakukan secara bertahap dan hati-hati mengikuti standar arkeologi. Tim BPCB DIY berhasil mengungkap lapisan-lapisan tanah yang menunjukkan kronologi situs. Temuan artefak di area ini membantu menentukan usia dan fungsi candi.",
+    "edukasiId": "area-ekskavasi"
+  },
+  {
+    "id": "vegetasi-pelindung",
+    "title": "Vegetasi Pelindung",
+    "icon": "🌿",
+    "position": { "x": 30, "y": 15 },
+    "shortInfo": "Tanaman pelindung situs yang ditanam sebagai bagian dari upaya konservasi. Vegetasi ini berfungsi mencegah erosi tanah dan melindungi struktur candi dari kerusakan akibat cuaca.",
+    "detailInfo": "Penanaman vegetasi pelindung merupakan bagian dari strategi pelestarian situs cagar budaya. Pagar tanaman hijau yang mengelilingi situs berfungsi ganda: melindungi struktur arkeologis dari erosi dan memberikan batas visual area situs. Jenis tanaman dipilih dengan cermat agar akarnya tidak merusak struktur bawah tanah.",
+    "edukasiId": "fondasi-candi"
+  },
+  {
+    "id": "sudut-struktur",
+    "title": "Sudut Struktur Candi",
+    "icon": "📐",
+    "position": { "x": 75, "y": 72 },
+    "shortInfo": "Sudut-sudut struktur fondasi yang menunjukkan presisi arsitektur Mataram Kuno abad IX-X Masehi. Sudut siku-siku yang nyaris sempurna membuktikan kemampuan teknis pembangun candi.",
+    "detailInfo": "Ketelitian sudut-sudut struktur ini menunjukkan bahwa para arsitek kuno menggunakan alat ukur yang presisi. Sudut 90 derajat yang hampir sempurna pada fondasi menandakan perencanaan yang matang sebelum pembangunan. Teknik ini konsisten dengan standar arsitektur candi-candi besar seperti Prambanan dan Borobudur.",
+    "edukasiId": "fondasi-candi"
+  }
+]

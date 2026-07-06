@@ -194,3 +194,29 @@ h1, h2, h3, h4, h5, h6 {
 .permission-gate {
   background: linear-gradient(180deg, var(--green-pale) 0%, var(--green-light) 100%);
 }
+
+/* ===== Virtual Tour Hotspot ===== */
+.hotspot-pulse {
+  animation: hotspotPulse 2s ease-in-out infinite;
+}
+
+@keyframes hotspotPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* ===== Scrollbar Hide ===== */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
