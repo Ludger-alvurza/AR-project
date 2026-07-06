@@ -117,8 +117,8 @@ export default function JelajahVirtualPage() {
 
       {/* Point selector (bottom bar) */}
       {!selectedPoint && (
-        <div className="fixed bottom-20 left-0 right-0 z-20 px-4">
-          <div className="flex gap-2 overflow-x-auto pb-2 justify-center scrollbar-hide">
+        <div className="fixed bottom-8 left-0 right-0 z-20">
+          <div className="flex gap-2 overflow-x-auto pb-2 px-4 justify-start sm:justify-center scrollbar-hide">
             {points.map((p) => (
               <button
                 key={p.id}
