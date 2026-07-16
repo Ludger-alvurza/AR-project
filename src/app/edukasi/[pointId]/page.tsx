@@ -26,7 +26,7 @@ export async function generateMetadata({
   const point = await getARPointByIdServer(params.pointId);
 
   return {
-    title: `Edukasi: ${point?.title || params.pointId} — Jelajah Edukasi AR`,
+    title: `${point?.layerLabel || point?.title || params.pointId} — Jelajah Edukasi AR`,
     description:
       edukasi?.questions[0]?.answer?.slice(0, 160) ||
       "Edukasi arkeologi Candi Klodangan",
@@ -59,6 +59,15 @@ export default async function EdukasiPage({ params }: PageProps) {
     );
   }
 
+  // Sort all points by layer for prev/next navigation
+  const sortedPoints = [...allPoints].sort((a, b) => a.layer - b.layer);
+  const currentIndex = sortedPoints.findIndex((p) => p.id === point.id);
+  const prevPoint = currentIndex > 0 ? sortedPoints[currentIndex - 1] : null;
+  const nextPoint =
+    currentIndex < sortedPoints.length - 1
+      ? sortedPoints[currentIndex + 1]
+      : null;
+
   return (
     <main className="min-h-screen bg-green-pale">
       <Navbar />
@@ -78,7 +87,19 @@ export default async function EdukasiPage({ params }: PageProps) {
             <span>›</span>
             <span className="text-green-primary font-medium">Edukasi</span>
             <span>›</span>
-            <span className="text-dark font-medium">{point.title}</span>
+            <span className="text-dark font-medium">{point.layerLabel}</span>
+          </div>
+
+          {/* Layer Badge */}
+          <div className="reveal mb-4">
+            <div className="inline-flex items-center gap-2 bg-green-primary text-white rounded-full px-4 py-2 shadow-md">
+              <span className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center font-display font-bold text-sm">
+                {point.layer}
+              </span>
+              <span className="text-sm font-semibold">
+                Tumpukan {point.layer} dari {allPoints.length}
+              </span>
+            </div>
           </div>
 
           <div className="flex items-start gap-4 mb-4">
@@ -88,7 +109,7 @@ export default async function EdukasiPage({ params }: PageProps) {
                 Edukasi Arkeologi
               </span>
               <h1 className="reveal font-display font-bold text-dark text-3xl sm:text-4xl">
-                {edukasi.title}
+                {point.layerLabel}
               </h1>
             </div>
           </div>
@@ -115,32 +136,99 @@ export default async function EdukasiPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Other Points */}
-      <section className="pb-20 px-4 sm:px-6">
+      {/* Prev/Next Layer Navigation */}
+      <section className="pb-12 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <h3 className="reveal font-display font-bold text-dark text-xl mb-6">
-            Jelajahi Titik Lainnya
+            Jelajahi Tumpukan Lainnya
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {allPoints
-              .filter((p) => p.id !== params.pointId)
-              .map((p) => (
-                <Link
-                  key={p.id}
-                  href={`/edukasi/${p.id}`}
-                  className="reveal bg-white rounded-2xl p-5 border border-green-light/50 card-hover flex items-center gap-3"
-                >
-                  <span className="text-2xl">{p.icon}</span>
-                  <div>
-                    <h4 className="font-display font-semibold text-dark text-sm">
-                      {p.title}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Previous Layer */}
+            {prevPoint ? (
+              <Link
+                href={`/edukasi/${prevPoint.id}`}
+                className="reveal bg-white rounded-2xl p-5 border border-green-light/50 card-hover flex items-center gap-3 group"
+              >
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-green-pale flex items-center justify-center">
+                  <svg className="w-4 h-4 text-green-primary group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <span className="text-xs text-stone-candi">
+                    ← Tumpukan sebelumnya
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">{prevPoint.icon}</span>
+                    <h4 className="font-display font-semibold text-dark text-sm truncate">
+                      {prevPoint.layerLabel}
                     </h4>
-                    <span className="text-xs text-stone-candi">
-                      Lihat edukasi →
-                    </span>
                   </div>
-                </Link>
-              ))}
+                </div>
+              </Link>
+            ) : (
+              <div className="bg-green-pale/50 rounded-2xl p-5 border border-green-light/30 flex items-center gap-3 opacity-50">
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-green-pale flex items-center justify-center">
+                  <span className="text-xs text-stone-candi">—</span>
+                </div>
+                <span className="text-sm text-stone-candi">
+                  Ini tumpukan paling bawah
+                </span>
+              </div>
+            )}
+
+            {/* Next Layer */}
+            {nextPoint ? (
+              <Link
+                href={`/edukasi/${nextPoint.id}`}
+                className="reveal bg-white rounded-2xl p-5 border border-green-light/50 card-hover flex items-center gap-3 group"
+              >
+                <div className="flex-1 min-w-0 text-right">
+                  <span className="text-xs text-stone-candi">
+                    Tumpukan berikutnya →
+                  </span>
+                  <div className="flex items-center gap-2 justify-end">
+                    <h4 className="font-display font-semibold text-dark text-sm truncate">
+                      {nextPoint.layerLabel}
+                    </h4>
+                    <span className="text-lg">{nextPoint.icon}</span>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-green-pale flex items-center justify-center">
+                  <svg className="w-4 h-4 text-green-primary group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
+            ) : (
+              <div className="bg-green-pale/50 rounded-2xl p-5 border border-green-light/30 flex items-center gap-3 opacity-50 justify-end text-right">
+                <span className="text-sm text-stone-candi">
+                  Ini tumpukan paling atas
+                </span>
+                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-green-pale flex items-center justify-center">
+                  <span className="text-xs text-stone-candi">—</span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* All layers quick nav */}
+          <div className="mt-6 flex gap-2 justify-center">
+            {sortedPoints.map((p) => (
+              <Link
+                key={p.id}
+                href={`/edukasi/${p.id}`}
+                className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold transition-all ${
+                  p.id === point.id
+                    ? "bg-green-primary text-white shadow-md scale-110"
+                    : "bg-white text-green-primary border border-green-light/50 hover:bg-green-pale"
+                }`}
+                title={p.layerLabel}
+              >
+                {p.layer}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -152,19 +240,26 @@ export default async function EdukasiPage({ params }: PageProps) {
             <div className="absolute inset-0 kawung-pattern opacity-10" />
             <div className="relative z-10">
               <h3 className="font-display font-bold text-white text-2xl mb-3">
-                Ingin melihat langsung di AR?
+                Ingin melihat lebih banyak?
               </h3>
               <p className="text-green-light text-sm mb-6 max-w-md mx-auto">
-                Kunjungi Candi Klodangan dan scan QR code di titik{" "}
-                <strong className="text-white">{point.title}</strong> untuk
-                pengalaman AR.
+                Jelajahi situs secara virtual dari mana saja, atau lihat timeline
+                sejarah lengkap Candi Klodangan.
               </p>
-              <Link
-                href={`/ar?point=${point.id}`}
-                className="bg-white text-green-primary font-body font-semibold px-8 py-3 rounded-xl transition-all hover:bg-green-light hover:shadow-lg active:scale-95 inline-block"
-              >
-                📸 Buka AR View
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link
+                  href="/jelajah-virtual"
+                  className="bg-white text-green-primary font-body font-semibold px-8 py-3 rounded-xl transition-all hover:bg-green-light hover:shadow-lg active:scale-95 inline-block"
+                >
+                  🗺️ Jelajah Virtual
+                </Link>
+                <Link
+                  href="/timeline"
+                  className="border-2 border-white text-white font-body font-semibold px-8 py-3 rounded-xl transition-all hover:bg-white/10 active:scale-95 inline-block"
+                >
+                  📅 Lihat Timeline
+                </Link>
+              </div>
             </div>
           </div>
         </div>

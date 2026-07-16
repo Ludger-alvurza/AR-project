@@ -1,7 +1,7 @@
 [
   {
-    "pointId": "fondasi-candi",
-    "title": "Fondasi Candi",
+    "pointId": "tumpukan-1-fondasi",
+    "title": "Fondasi Dasar",
     "questions": [
       {
         "question": "Apa fungsi fondasi candi?",
@@ -18,7 +18,7 @@
     ]
   },
   {
-    "pointId": "batu-penyusun",
+    "pointId": "tumpukan-2-batu",
     "title": "Batu Penyusun",
     "questions": [
       {
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "pointId": "area-ekskavasi",
+    "pointId": "tumpukan-3-ekskavasi",
     "title": "Area Ekskavasi",
     "questions": [
       {
@@ -54,7 +54,7 @@
     ]
   },
   {
-    "pointId": "status-cagar-budaya",
+    "pointId": "tumpukan-4-status",
     "title": "Status Cagar Budaya",
     "questions": [
       {

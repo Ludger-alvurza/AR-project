@@ -1,12 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useState, useCallback, Suspense } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import type { ARPoint } from "@/lib/data";
 import ARPermissionGate from "@/components/ar/ARPermissionGate";
-import ARInfoPoint from "@/components/ar/ARInfoPoint";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 
 // Dynamic import — ARScene uses browser-only APIs (camera, GPS, compass)
@@ -15,76 +12,28 @@ const ARScene = dynamic(() => import("@/components/ar/ARScene"), {
   loading: () => <LoadingScreen message="Menyiapkan kamera..." />,
 });
 
+// Koordinat tunggal lokasi Candi Klodangan
+const CANDI_LOCATION = {
+  lat: -7.812667,
+  lng: 110.426289,
+  title: "Candi Klodangan",
+};
+
 function ARPageContent() {
-  const searchParams = useSearchParams();
-  const pointId = searchParams.get("point") || "fondasi-candi";
-
-  const [points, setPoints] = useState<ARPoint[]>([]);
-  const [activePoint, setActivePoint] = useState<ARPoint | null>(null);
-  const [selectedPoint, setSelectedPoint] = useState<ARPoint | null>(null);
   const [permissionsGranted, setPermissionsGranted] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Load AR points data
-  useEffect(() => {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
-
-    fetch("/data/ar-points.json", { signal: controller.signal })
-      .then((res) => res.json())
-      .then((data: ARPoint[]) => {
-        setPoints(data);
-        const found = data.find((p) => p.id === pointId);
-        setActivePoint(found || data[0]);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        if (err.name !== "AbortError") {
-          console.error("Failed to load AR points:", err);
-        }
-        setIsLoading(false);
-      })
-      .finally(() => clearTimeout(timeoutId));
-  }, [pointId]);
+  const [showInfo, setShowInfo] = useState(false);
 
   const handlePermissionsGranted = useCallback(() => {
     setPermissionsGranted(true);
   }, []);
 
-  const handlePointClick = useCallback((point: ARPoint) => {
-    setSelectedPoint(point);
+  const handleMarkerClick = useCallback(() => {
+    setShowInfo(true);
   }, []);
 
   const handleCloseInfo = useCallback(() => {
-    setSelectedPoint(null);
+    setShowInfo(false);
   }, []);
-
-  if (isLoading) {
-    return <LoadingScreen message="Memuat data titik AR..." />;
-  }
-
-  if (!activePoint) {
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-green-pale p-6">
-        <div className="text-center">
-          <span className="text-5xl block mb-4">🔍</span>
-          <h2 className="font-display font-bold text-dark text-2xl mb-2">
-            Titik Tidak Ditemukan
-          </h2>
-          <p className="text-stone-candi mb-6">
-            Parameter{" "}
-            <code className="bg-green-light px-2 py-1 rounded text-green-primary text-sm">
-              ?point={pointId}
-            </code>{" "}
-            tidak valid.
-          </p>
-          <Link href="/" className="btn-primary">
-            Kembali ke Beranda
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="fixed inset-0 bg-dark" id="ar-page">
@@ -92,7 +41,7 @@ function ARPageContent() {
       {!permissionsGranted && (
         <ARPermissionGate
           onPermissionsGranted={handlePermissionsGranted}
-          pointTitle={activePoint.title}
+          pointTitle="Navigasi ke Candi"
         />
       )}
 
@@ -100,9 +49,8 @@ function ARPageContent() {
       {permissionsGranted && (
         <>
           <ARScene
-            points={points}
-            activePointId={activePoint.id}
-            onPointClick={handlePointClick}
+            candiLocation={CANDI_LOCATION}
+            onMarkerClick={handleMarkerClick}
           />
 
           {/* Top Bar */}
@@ -129,54 +77,113 @@ function ARPageContent() {
             </Link>
 
             <div className="glass-dark rounded-full px-4 py-2 flex items-center gap-2">
-              <span className="text-lg">{activePoint.icon}</span>
+              <span className="text-lg">🧭</span>
               <span className="text-white text-sm font-semibold">
-                {activePoint.title}
+                Navigasi AR
               </span>
             </div>
           </div>
 
           {/* Bottom hint */}
-          {!selectedPoint && (
+          {!showInfo && (
             <div className="fixed bottom-8 left-0 right-0 z-20 flex justify-center pointer-events-none">
               <div className="glass-dark rounded-full px-6 py-3 flex items-center gap-2 animate-pulse-soft">
-                <span className="text-sm">👆</span>
+                <span className="text-sm">🧭</span>
                 <span className="text-white text-sm">
-                  Arahkan kamera ke titik informasi
+                  Arahkan kamera ke lokasi Candi Klodangan
                 </span>
               </div>
             </div>
           )}
 
-          {/* Point selector */}
-          <div className="fixed bottom-24 left-0 right-0 z-20 px-4">
-            <div className="flex gap-2 overflow-x-auto pb-2 justify-center">
-              {points.map((p) => (
-                <button
-                  key={p.id}
-                  onClick={() => handlePointClick(p)}
-                  className={`flex-shrink-0 glass-dark rounded-full px-4 py-2 flex items-center gap-2 transition-all ${
-                    p.id === activePoint.id
-                      ? "ring-2 ring-green-mid"
-                      : "opacity-70 hover:opacity-100"
-                  }`}
-                >
-                  <span className="text-sm">{p.icon}</span>
-                  <span className="text-white text-xs font-medium whitespace-nowrap">
-                    {p.title}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-
           {/* Info Panel */}
-          {selectedPoint && (
-            <ARInfoPoint
-              point={selectedPoint}
-              isVisible={!!selectedPoint}
-              onClose={handleCloseInfo}
-            />
+          {showInfo && (
+            <div
+              className="fixed bottom-0 left-0 right-0 z-30 transition-transform duration-400 ease-out translate-y-0"
+              id="ar-info-panel"
+            >
+              {/* Backdrop */}
+              <div
+                className="fixed inset-0 bg-black/20 -z-10"
+                onClick={handleCloseInfo}
+              />
+
+              {/* Card */}
+              <div className="bg-white rounded-t-3xl shadow-2xl p-6 pb-8 max-h-[60vh] overflow-y-auto">
+                {/* Handle */}
+                <div className="w-12 h-1.5 bg-green-light rounded-full mx-auto mb-4" />
+
+                {/* Header */}
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl">🏛️</span>
+                    <div>
+                      <h3 className="font-display font-bold text-dark text-xl">
+                        Candi Klodangan
+                      </h3>
+                      <span className="text-xs text-stone-candi">
+                        Navigasi GPS ke Lokasi Candi
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleCloseInfo}
+                    className="w-8 h-8 rounded-full bg-green-pale flex items-center justify-center text-stone-candi hover:bg-green-light transition-colors"
+                    aria-label="Tutup"
+                    id="btn-close-info"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                {/* Content */}
+                <p className="text-stone-candi text-sm leading-relaxed mb-4">
+                  Ikuti arah panah AR untuk menuju area situs Candi Klodangan.
+                  Setibanya di lokasi, scan QR code yang tertempel di tiap
+                  lapisan batu untuk mempelajari informasi tiap tumpukan.
+                </p>
+
+                <div className="bg-green-pale rounded-2xl p-4 mb-6">
+                  <p className="text-xs font-semibold text-green-primary mb-2">
+                    📋 Di lokasi candi, tersedia:
+                  </p>
+                  <ul className="space-y-1.5 text-xs text-stone-candi">
+                    <li className="flex items-center gap-2">
+                      <span>🏛️</span> QR-01: Tumpukan 1 — Fondasi Dasar
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span>🪨</span> QR-02: Tumpukan 2 — Batu Penyusun
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span>⛏️</span> QR-03: Tumpukan 3 — Area Ekskavasi
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span>📜</span> QR-04: Tumpukan 4 — Puncak
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Actions */}
+                <div className="flex gap-3">
+                  <a
+                    href={`https://maps.google.com/?q=${CANDI_LOCATION.lat},${CANDI_LOCATION.lng}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary flex-1 text-center text-sm"
+                    id="btn-open-maps"
+                  >
+                    📍 Buka Google Maps
+                  </a>
+                  <button
+                    onClick={handleCloseInfo}
+                    className="btn-secondary text-sm px-4"
+                    id="btn-back-ar"
+                  >
+                    Kembali
+                  </button>
+                </div>
+              </div>
+            </div>
           )}
         </>
       )}

@@ -1,12 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import type { ARPoint } from "@/lib/data";
+
+interface CandiLocation {
+  lat: number;
+  lng: number;
+  title: string;
+}
 
 interface ARSceneProps {
-  points: ARPoint[];
-  activePointId: string;
-  onPointClick: (point: ARPoint) => void;
+  candiLocation: CandiLocation;
+  onMarkerClick: () => void;
 }
 
 interface UserPosition {
@@ -15,9 +19,8 @@ interface UserPosition {
 }
 
 export default function ARScene({
-  points,
-  activePointId,
-  onPointClick,
+  candiLocation,
+  onMarkerClick,
 }: ARSceneProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -189,8 +192,7 @@ export default function ARScene({
     );
   }
 
-  // ── LOADING STATE ───────────────────────────────────────
-  // Video tetap di DOM meskipun loading — ini krusial untuk fix race condition
+  // ── RENDER ──────────────────────────────────────────────
   return (
     <div className="fixed inset-0 bg-dark">
       {/* Loading overlay — tampil di atas video saat belum ready */}
@@ -219,14 +221,37 @@ export default function ARScene({
       {ready && (
         <>
           <div className="absolute inset-0 pointer-events-none" id="ar-overlay">
-            {points.map((point) => {
+            {(() => {
               if (userPos) {
-                const bearing = getBearing(userPos, point.gps);
-                const distance = getDistance(userPos, point.gps);
+                const bearing = getBearing(userPos, candiLocation);
+                const distance = getDistance(userPos, candiLocation);
                 let angle = bearing - heading;
                 if (angle > 180) angle -= 360;
                 if (angle < -180) angle += 360;
-                if (Math.abs(angle) > 60) return null;
+
+                // Tampilkan marker jika dalam field of view (±60°)
+                if (Math.abs(angle) > 60) {
+                  // Tampilkan arrow indicator di tepi layar
+                  const side = angle > 0 ? "right" : "left";
+                  return (
+                    <div
+                      className="absolute pointer-events-auto top-1/2 -translate-y-1/2"
+                      style={{
+                        [side]: "16px",
+                      }}
+                    >
+                      <button
+                        onClick={onMarkerClick}
+                        className="glass-dark rounded-full px-3 py-2 flex items-center gap-2 animate-pulse-soft"
+                      >
+                        <span className="text-white text-sm">
+                          {side === "left" ? "←" : "→"}
+                        </span>
+                        <span className="text-white text-xs">🏛️</span>
+                      </button>
+                    </div>
+                  );
+                }
 
                 const x = 50 + (angle / 60) * 50;
                 const scale = Math.max(
@@ -235,9 +260,13 @@ export default function ARScene({
                 );
                 const y = 30 + (1 / scale) * 15;
 
+                const distanceLabel =
+                  distance < 1000
+                    ? `${Math.round(distance)}m`
+                    : `${(distance / 1000).toFixed(1)}km`;
+
                 return (
                   <div
-                    key={point.id}
                     className="absolute pointer-events-auto"
                     style={{
                       left: `${x}%`,
@@ -247,56 +276,52 @@ export default function ARScene({
                     }}
                   >
                     <button
-                      onClick={() => onPointClick(point)}
-                      className={`ar-point-label flex flex-col items-center gap-1 ${point.id === activePointId ? "scale-110" : "opacity-80"}`}
+                      onClick={onMarkerClick}
+                      className="ar-point-label flex flex-col items-center gap-1 scale-110"
                     >
-                      <span className="text-3xl drop-shadow-lg">
-                        {point.icon}
+                      <span className="text-4xl drop-shadow-lg animate-float">
+                        🏛️
                       </span>
-                      <span
-                        className={`ar-overlay-text text-xs font-semibold whitespace-nowrap ${point.id === activePointId ? "ring-2 ring-green-mid" : ""}`}
-                      >
-                        {point.title}
+                      <span className="ar-overlay-text text-xs font-semibold whitespace-nowrap ring-2 ring-green-mid">
+                        Candi Klodangan
                       </span>
                       <span className="text-white/60 text-[10px]">
-                        {distance < 1000
-                          ? `${Math.round(distance)}m`
-                          : `${(distance / 1000).toFixed(1)}km`}
+                        {distanceLabel}
                       </span>
+                      {distance < 50 && (
+                        <span className="bg-green-mid text-white text-[10px] px-2 py-0.5 rounded-full font-medium mt-1">
+                          Anda sudah dekat! Cari QR di batu.
+                        </span>
+                      )}
                     </button>
                   </div>
                 );
               }
 
-              // Fallback no GPS
-              const idx = points.indexOf(point);
-              const x = 20 + (idx / Math.max(points.length - 1, 1)) * 60;
+              // Fallback no GPS — centered marker
               return (
                 <div
-                  key={point.id}
                   className="absolute pointer-events-auto"
                   style={{
-                    left: `${x}%`,
+                    left: "50%",
                     top: "40%",
                     transform: "translate(-50%,-50%)",
                   }}
                 >
                   <button
-                    onClick={() => onPointClick(point)}
-                    className={`ar-point-label flex flex-col items-center gap-1 ${point.id === activePointId ? "scale-110" : "opacity-70"}`}
+                    onClick={onMarkerClick}
+                    className="ar-point-label flex flex-col items-center gap-1"
                   >
-                    <span className="text-3xl drop-shadow-lg animate-float">
-                      {point.icon}
+                    <span className="text-4xl drop-shadow-lg animate-float">
+                      🏛️
                     </span>
-                    <span
-                      className={`ar-overlay-text text-xs font-semibold whitespace-nowrap ${point.id === activePointId ? "ring-2 ring-green-mid" : ""}`}
-                    >
-                      {point.title}
+                    <span className="ar-overlay-text text-xs font-semibold whitespace-nowrap ring-2 ring-green-mid">
+                      Candi Klodangan
                     </span>
                   </button>
                 </div>
               );
-            })}
+            })()}
           </div>
 
           {/* GPS Status */}

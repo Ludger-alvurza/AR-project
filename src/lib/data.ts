@@ -1,6 +1,8 @@
 export interface ARPoint {
   id: string;
   title: string;
+  layer: number;
+  layerLabel: string;
   qrUrl: string;
   gps: { lat: number; lng: number };
   shortInfo: string;
@@ -57,6 +59,13 @@ export async function getARPointById(
   return data.find((p) => p.id === id);
 }
 
+export async function getARPointByLayer(
+  layer: number
+): Promise<ARPoint | undefined> {
+  const data = await getARPoints();
+  return data.find((p) => p.layer === layer);
+}
+
 // Server-side versions (for use in Server Components)
 import { promises as fs } from "fs";
 import path from "path";
@@ -91,4 +100,11 @@ export async function getARPointByIdServer(
 ): Promise<ARPoint | undefined> {
   const data = await getARPointsServer();
   return data.find((p) => p.id === id);
+}
+
+export async function getARPointByLayerServer(
+  layer: number
+): Promise<ARPoint | undefined> {
+  const data = await getARPointsServer();
+  return data.find((p) => p.layer === layer);
 }

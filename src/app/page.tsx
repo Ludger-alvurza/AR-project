@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
-import InfoCard from "@/components/ui/InfoCard";
 import { getARPointsServer } from "@/lib/data";
 import LandingAnimations from "./LandingAnimations";
 
@@ -25,7 +24,7 @@ export default async function HomePage() {
             <div className="reveal inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-green-light rounded-full px-4 py-2 mb-6 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-green-mid animate-pulse-soft" />
               <span className="text-xs font-semibold text-green-primary tracking-wider uppercase">
-                Augmented Reality • Edukasi
+                QR Scan • Edukasi Arkeologi
               </span>
             </div>
 
@@ -38,10 +37,10 @@ export default async function HomePage() {
 
             {/* Subtitle */}
             <p className="reveal text-stone-candi text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl mx-auto">
-              Scan QR code di lokasi situs untuk menjelajahi sejarah dan
+              Scan QR code di tiap lapisan batu untuk menjelajahi sejarah dan
               arkeologi Candi Klodangan melalui{" "}
               <span className="font-semibold text-green-primary">
-                Augmented Reality
+                edukasi interaktif
               </span>
               .
             </p>
@@ -81,8 +80,72 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* ===== 3 FITUR UTAMA ===== */}
+      <section className="py-16 bg-white" id="fitur-utama">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10">
+            <span className="reveal inline-block text-green-mid font-semibold text-sm uppercase tracking-wider mb-3">
+              Tiga Cara Menjelajah
+            </span>
+            <h2 className="reveal font-display font-bold text-dark text-3xl sm:text-4xl mb-4">
+              Fitur Utama
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: "📱",
+                title: "QR per Tumpukan",
+                subtitle: "Di lokasi candi",
+                desc: "Scan QR code di tiap lapisan batu untuk membuka info spesifik tumpukan tersebut. Simpel, akurat, tanpa perlu GPS.",
+                tag: "Info Detail",
+                color: "bg-green-primary",
+              },
+              {
+                icon: "🧭",
+                title: "Navigasi AR GPS",
+                subtitle: "Menuju ke candi",
+                desc: "Gunakan kamera HP + GPS untuk navigasi AR dari parkiran menuju lokasi Candi Klodangan.",
+                tag: "Navigasi",
+                color: "bg-green-mid",
+              },
+              {
+                icon: "🗺️",
+                title: "Jelajah Virtual",
+                subtitle: "Dari mana saja",
+                desc: "Lihat foto aerial situs dengan hotspot interaktif — untuk yang tidak bisa datang langsung.",
+                tag: "Remote",
+                color: "bg-stone-candi",
+              },
+            ].map((item, i) => (
+              <div
+                key={item.title}
+                className={`reveal reveal-delay-${i + 1} bg-green-pale rounded-2xl p-6 border border-green-light/30 card-hover`}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-3xl">{item.icon}</span>
+                  <div>
+                    <h3 className="font-display font-bold text-dark text-lg">
+                      {item.title}
+                    </h3>
+                    <span className="text-xs text-stone-candi">{item.subtitle}</span>
+                  </div>
+                </div>
+                <p className="text-stone-candi text-sm leading-relaxed mb-3">
+                  {item.desc}
+                </p>
+                <span className={`inline-block text-xs text-white px-3 py-1 rounded-full ${item.color}`}>
+                  {item.tag}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== CARA MENGGUNAKAN ===== */}
-      <section className="py-20 bg-white" id="cara-pakai">
+      <section className="py-20 kawung-pattern" id="cara-pakai">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="reveal inline-block text-green-mid font-semibold text-sm uppercase tracking-wider mb-3">
@@ -93,7 +156,6 @@ export default async function HomePage() {
             </h2>
             <p className="reveal text-stone-candi text-lg max-w-2xl mx-auto">
               Empat langkah mudah untuk menjelajahi situs Candi Klodangan
-              dengan AR
             </p>
           </div>
 
@@ -108,25 +170,25 @@ export default async function HomePage() {
               {
                 step: "02",
                 icon: "📱",
-                title: "Scan QR Code",
-                desc: "Scan QR code yang tertempel di tiap titik informasi menggunakan kamera HP.",
+                title: "Temukan QR Code",
+                desc: "Cari papan QR yang tertempel di samping tiap lapisan batu — ada 4 tumpukan.",
               },
               {
                 step: "03",
-                icon: "📸",
-                title: "Arahkan Kamera",
-                desc: "Izinkan akses kamera dan GPS, lalu arahkan HP ke area sekitar titik informasi.",
+                icon: "🔍",
+                title: "Scan QR",
+                desc: "Arahkan kamera HP ke QR code. Halaman edukasi tumpukan itu langsung terbuka di browser.",
               },
               {
                 step: "04",
                 icon: "📖",
                 title: "Baca & Pelajari",
-                desc: "Klik titik info AR yang muncul, baca narasi sejarah, dan pelajari arkeologinya.",
+                desc: "Pelajari sejarah dan arkeologi tiap lapisan batu. Lanjut scan QR tumpukan berikutnya!",
               },
             ].map((item, i) => (
               <div
                 key={item.step}
-                className={`reveal reveal-delay-${i + 1} relative bg-green-pale rounded-2xl p-6 text-center card-hover border border-green-light/30`}
+                className={`reveal reveal-delay-${i + 1} relative bg-white rounded-2xl p-6 text-center card-hover border border-green-light/30`}
               >
                 {/* Step number */}
                 <div className="absolute -top-3 -right-2 w-8 h-8 rounded-full bg-green-primary text-white text-xs font-bold flex items-center justify-center shadow-lg">
@@ -145,39 +207,76 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ===== TITIK INFORMASI ===== */}
-      <section className="py-20 kawung-pattern" id="titik-info">
+      {/* ===== 4 TUMPUKAN BATU ===== */}
+      <section className="py-20 bg-white" id="tumpukan-batu">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <span className="reveal inline-block text-green-mid font-semibold text-sm uppercase tracking-wider mb-3">
-              4 Titik AR
+              4 Tumpukan Batu
             </span>
             <h2 className="reveal font-display font-bold text-dark text-3xl sm:text-4xl mb-4">
-              Titik Informasi di Situs
+              Lapisan Batu di Situs
             </h2>
             <p className="reveal text-stone-candi text-lg max-w-2xl mx-auto">
-              Setiap titik memiliki QR code unik yang memicu pengalaman AR
-              berbeda
+              Scan QR di tiap lapisan untuk mempelajari informasinya.
+              Semua berada di <strong>lokasi yang sama</strong> — yang berbeda adalah
+              tingkatan vertikal batu.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {arPoints.map((point, i) => (
-              <InfoCard
-                key={point.id}
-                icon={point.icon}
-                title={point.title}
-                description={point.shortInfo}
-                linkHref={`/edukasi/${point.edukasiId}`}
-                className={`reveal reveal-delay-${(i % 4) + 1}`}
-              />
-            ))}
+          {/* Vertical Stack Visualization */}
+          <div className="max-w-2xl mx-auto">
+            <div className="space-y-3">
+              {[...arPoints].sort((a, b) => b.layer - a.layer).map((point, i) => (
+                <Link
+                  key={point.id}
+                  href={`/edukasi/${point.edukasiId}`}
+                  className={`reveal reveal-delay-${i + 1} block group`}
+                >
+                  <div className="flex items-center gap-4 bg-green-pale rounded-2xl p-5 border border-green-light/50 card-hover transition-all group-hover:border-green-mid">
+                    {/* Layer Number */}
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-green-primary text-white flex items-center justify-center font-display font-bold text-lg shadow-md">
+                      {point.layer}
+                    </div>
+
+                    {/* Icon */}
+                    <span className="text-3xl flex-shrink-0">{point.icon}</span>
+
+                    {/* Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-display font-bold text-dark text-lg truncate">
+                          {point.layerLabel}
+                        </h3>
+                      </div>
+                      <p className="text-stone-candi text-sm leading-relaxed line-clamp-2">
+                        {point.shortInfo}
+                      </p>
+                    </div>
+
+                    {/* Arrow */}
+                    <div className="flex-shrink-0 text-green-mid group-hover:translate-x-1 transition-transform">
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* GPS Note */}
+            <div className="text-center mt-4">
+              <span className="text-xs text-stone-candi/60 inline-flex items-center gap-1">
+                📍 Semua di koordinat GPS yang sama — perbedaan hanya vertikal
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ===== TENTANG CANDI ===== */}
-      <section className="py-20 bg-white" id="tentang">
+      <section className="py-20 kawung-pattern" id="tentang">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             {/* Text */}
@@ -213,16 +312,19 @@ export default async function HomePage() {
                 </p>
               </div>
 
-              <div className="reveal mt-6">
+              <div className="reveal mt-6 flex flex-wrap gap-3">
                 <Link href="/timeline" className="btn-primary inline-flex items-center gap-2" id="btn-timeline-tentang">
                   📅 Lihat Sejarah Lengkap
+                </Link>
+                <Link href="/ar" className="btn-secondary inline-flex items-center gap-2" id="btn-navigasi-ar">
+                  🧭 Navigasi AR ke Candi
                 </Link>
               </div>
             </div>
 
             {/* Visual */}
             <div className="reveal">
-              <div className="bg-green-pale rounded-3xl p-8 kawung-pattern-strong relative overflow-hidden">
+              <div className="bg-white rounded-3xl p-8 kawung-pattern-strong relative overflow-hidden">
                 <div className="text-center">
                   <div className="text-7xl mb-4">🏛️</div>
                   <h3 className="font-display font-bold text-dark text-xl mb-3">
@@ -237,7 +339,7 @@ export default async function HomePage() {
                     ].map((fact) => (
                       <div
                         key={fact.label}
-                        className="bg-white/80 rounded-xl p-3 backdrop-blur-sm"
+                        className="bg-green-pale/80 rounded-xl p-3 backdrop-blur-sm"
                       >
                         <div className="font-display font-bold text-green-primary text-lg">
                           {fact.value}
@@ -263,8 +365,8 @@ export default async function HomePage() {
             Siap Menjelajah?
           </h2>
           <p className="text-green-light text-lg mb-8 max-w-2xl mx-auto">
-            Kunjungi Candi Klodangan dan scan QR code di lokasi untuk memulai
-            pengalaman AR edukasi.
+            Kunjungi Candi Klodangan dan scan QR code di tiap lapisan batu
+            untuk memulai pengalaman edukasi arkeologi.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

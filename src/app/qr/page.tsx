@@ -6,28 +6,36 @@ const BASE_URL = "https://arcandiklodangan.vercel.app";
 
 const qrPoints = [
   {
-    id: "fondasi-candi",
-    title: "Fondasi Candi",
+    id: "tumpukan-1-fondasi",
+    title: "Fondasi Dasar",
+    layer: 1,
+    layerLabel: "Tumpukan 1 — Fondasi Dasar",
     icon: "🏛️",
-    url: `${BASE_URL}/ar?point=fondasi-candi`,
+    url: `${BASE_URL}/edukasi/tumpukan-1-fondasi`,
   },
   {
-    id: "batu-penyusun",
+    id: "tumpukan-2-batu",
     title: "Batu Penyusun",
+    layer: 2,
+    layerLabel: "Tumpukan 2 — Batu Penyusun",
     icon: "🪨",
-    url: `${BASE_URL}/ar?point=batu-penyusun`,
+    url: `${BASE_URL}/edukasi/tumpukan-2-batu`,
   },
   {
-    id: "area-ekskavasi",
+    id: "tumpukan-3-ekskavasi",
     title: "Area Ekskavasi",
+    layer: 3,
+    layerLabel: "Tumpukan 3 — Area Ekskavasi",
     icon: "⛏️",
-    url: `${BASE_URL}/ar?point=area-ekskavasi`,
+    url: `${BASE_URL}/edukasi/tumpukan-3-ekskavasi`,
   },
   {
-    id: "status-cagar-budaya",
+    id: "tumpukan-4-status",
     title: "Status Cagar Budaya",
+    layer: 4,
+    layerLabel: "Tumpukan 4 — Puncak",
     icon: "📜",
-    url: `${BASE_URL}/ar?point=status-cagar-budaya`,
+    url: `${BASE_URL}/edukasi/tumpukan-4-status`,
   },
 ];
 
@@ -42,11 +50,11 @@ export default function QRPage() {
         {/* Header */}
         <div className="text-center mb-12 print:mb-8">
           <h1 className="font-display font-bold text-dark text-3xl sm:text-4xl mb-4">
-            QR Code Generator
+            QR Code — Tumpukan Batu
           </h1>
           <p className="text-stone-candi text-lg mb-6">
-            QR codes untuk dicetak dan ditempel di tiap titik informasi di
-            lokasi Candi Klodangan.
+            QR codes untuk dicetak dan ditempel di papan kecil di samping tiap
+            lapisan batu di lokasi Candi Klodangan.
           </p>
           <button
             onClick={handlePrint}
@@ -57,6 +65,53 @@ export default function QRPage() {
           </button>
         </div>
 
+        {/* Stack Diagram */}
+        <div className="bg-white rounded-3xl p-6 sm:p-8 mb-8 border border-green-light/50 print:hidden">
+          <h3 className="font-display font-bold text-dark text-lg mb-4 text-center">
+            📐 Diagram Pemasangan QR
+          </h3>
+          <p className="text-stone-candi text-sm text-center mb-6">
+            Semua QR ditempel di lokasi GPS yang <strong>sama</strong> — yang
+            berbeda adalah <strong>tingkatan vertikal</strong> batu.
+          </p>
+          <div className="max-w-xs mx-auto space-y-2">
+            {[...qrPoints].reverse().map((point) => (
+              <div
+                key={point.id}
+                className="flex items-center gap-3 bg-green-pale rounded-xl px-4 py-3 border border-green-light/50"
+              >
+                <span className="w-8 h-8 rounded-full bg-green-primary text-white text-xs font-bold flex items-center justify-center flex-shrink-0">
+                  {point.layer}
+                </span>
+                <span className="text-lg">{point.icon}</span>
+                <div className="flex-1 min-w-0">
+                  <span className="text-sm font-semibold text-dark block truncate">
+                    {point.title}
+                  </span>
+                  <span className="text-xs text-stone-candi">
+                    QR-0{point.layer}
+                  </span>
+                </div>
+                {point.layer === 4 && (
+                  <span className="text-xs bg-green-light text-green-primary px-2 py-0.5 rounded-full font-medium flex-shrink-0">
+                    Puncak
+                  </span>
+                )}
+                {point.layer === 1 && (
+                  <span className="text-xs bg-green-light text-green-primary px-2 py-0.5 rounded-full font-medium flex-shrink-0">
+                    Fondasi
+                  </span>
+                )}
+              </div>
+            ))}
+            <div className="text-center pt-2">
+              <span className="text-xs text-stone-candi/60">
+                ← Semua di koordinat GPS yang sama →
+              </span>
+            </div>
+          </div>
+        </div>
+
         {/* QR Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
           {qrPoints.map((point) => (
@@ -64,13 +119,23 @@ export default function QRPage() {
               key={point.id}
               className="bg-white rounded-3xl p-8 shadow-sm border border-green-light/50 text-center print:break-inside-avoid print:shadow-none"
             >
+              {/* Layer Badge */}
+              <div className="inline-flex items-center gap-1.5 bg-green-pale rounded-full px-3 py-1 mb-3">
+                <span className="w-5 h-5 rounded-full bg-green-primary text-white text-[10px] font-bold flex items-center justify-center">
+                  {point.layer}
+                </span>
+                <span className="text-xs font-semibold text-green-primary">
+                  QR-0{point.layer}
+                </span>
+              </div>
+
               {/* Icon & Title */}
               <span className="text-3xl block mb-2">{point.icon}</span>
               <h3 className="font-display font-bold text-dark text-xl mb-1">
-                {point.title}
+                {point.layerLabel}
               </h3>
               <p className="text-stone-candi text-xs mb-6">
-                Scan untuk membuka AR view
+                Scan untuk membuka info tumpukan ini
               </p>
 
               {/* QR Code */}
@@ -106,7 +171,7 @@ export default function QRPage() {
         {/* Instructions */}
         <div className="mt-12 bg-white rounded-3xl p-8 border border-green-light/50 print:hidden">
           <h3 className="font-display font-bold text-dark text-xl mb-4">
-            📋 Panduan Cetak QR
+            📋 Panduan Cetak & Pasang QR
           </h3>
           <ul className="space-y-3 text-stone-candi text-sm">
             <li className="flex items-start gap-3">
@@ -133,8 +198,8 @@ export default function QRPage() {
                 3
               </span>
               <span>
-                Pasang QR di <strong>ketinggian dada</strong> (~120-150 cm dari
-                tanah) agar mudah dijangkau pengunjung.
+                Pasang tiap QR di <strong>papan kecil di samping lapisan batu</strong>{" "}
+                yang sesuai — QR-01 di fondasi paling bawah, QR-04 di puncak.
               </span>
             </li>
             <li className="flex items-start gap-3">
@@ -142,8 +207,19 @@ export default function QRPage() {
                 4
               </span>
               <span>
-                Pastikan ada label &quot;Scan QR untuk AR&quot; di sekitar QR
-                agar pengunjung tahu fungsinya.
+                Pastikan ada label nomor tumpukan di papan QR (misal:{" "}
+                <strong>&quot;Tumpukan 1 — Fondasi&quot;</strong>) agar
+                pengunjung tahu fungsinya.
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="w-6 h-6 rounded-full bg-green-light text-green-primary flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                5
+              </span>
+              <span>
+                Scan QR akan langsung membuka{" "}
+                <strong>halaman edukasi</strong> per tumpukan — tidak perlu GPS
+                atau akses kamera.
               </span>
             </li>
           </ul>
