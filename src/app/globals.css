@@ -220,3 +220,43 @@ h1, h2, h3, h4, h5, h6 {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* ===== QR Scanner Overrides (html5-qrcode) ===== */
+#qr-reader {
+  border: none !important;
+  background: transparent !important;
+}
+
+#qr-reader video {
+  border-radius: 16px !important;
+}
+
+#qr-reader__scan_region {
+  min-height: 280px;
+}
+
+#qr-reader__scan_region img {
+  display: none !important;
+}
+
+/* Scanning region border */
+#qr-reader__scan_region > div {
+  border-color: var(--green-mid) !important;
+}
+
+/* Hide default dashboard/buttons */
+#qr-reader__dashboard {
+  display: none !important;
+}
+
+#qr-reader__dashboard_section {
+  display: none !important;
+}
+
+#qr-reader__status_span {
+  display: none !important;
+}
+
+#qr-reader__header_message {
+  display: none !important;
+}

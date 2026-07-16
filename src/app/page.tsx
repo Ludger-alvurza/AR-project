@@ -47,8 +47,8 @@ export default async function HomePage() {
 
             {/* CTAs */}
             <div className="reveal flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/timeline" className="btn-primary text-lg px-8 py-4" id="cta-timeline">
-                📅 Lihat Timeline Situs
+              <Link href="/scan" className="btn-primary text-lg px-8 py-4 ring-2 ring-green-mid ring-offset-2 ring-offset-green-pale" id="cta-scan-qr">
+                📱 Scan QR Tumpukan
               </Link>
               <Link href="/jelajah-virtual" className="btn-primary text-lg px-8 py-4" id="cta-jelajah-virtual">
                 🗺️ Jelajah Virtual
@@ -177,7 +177,7 @@ export default async function HomePage() {
                 step: "03",
                 icon: "🔍",
                 title: "Scan QR",
-                desc: "Arahkan kamera HP ke QR code. Halaman edukasi tumpukan itu langsung terbuka di browser.",
+                desc: "Scan QR pakai kamera HP, atau tekan tombol 'Scan QR' di web ini. Halaman edukasi langsung terbuka.",
               },
               {
                 step: "04",

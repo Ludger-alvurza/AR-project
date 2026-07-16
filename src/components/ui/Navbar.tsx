@@ -42,11 +42,11 @@ export default function Navbar() {
               Tentang
             </Link>
             <Link
-              href="/#cara-pakai"
+              href="/scan"
               className="btn-primary text-sm ml-2"
               id="nav-cta"
             >
-              Cara Pakai
+              📱 Scan QR
             </Link>
           </div>
 
@@ -85,6 +85,14 @@ export default function Navbar() {
         >
           <div className="flex flex-col gap-1 pt-2 border-t border-green-light">
             <Link
+              href="/scan"
+              onClick={() => setIsOpen(false)}
+              className="px-4 py-3 rounded-lg text-green-primary font-semibold hover:bg-green-light transition-colors"
+              id="nav-mobile-scan"
+            >
+              📱 Scan QR Tumpukan
+            </Link>
+            <Link
               href="/timeline"
               onClick={() => setIsOpen(false)}
               className="px-4 py-3 rounded-lg text-dark font-medium hover:bg-green-light transition-colors"
@@ -107,14 +115,6 @@ export default function Navbar() {
               id="nav-mobile-tentang"
             >
               ℹ️ Tentang Candi
-            </Link>
-            <Link
-              href="/#cara-pakai"
-              onClick={() => setIsOpen(false)}
-              className="px-4 py-3 rounded-lg text-dark font-medium hover:bg-green-light transition-colors"
-              id="nav-mobile-cara"
-            >
-              📱 Cara Menggunakan
             </Link>
           </div>
         </div>
