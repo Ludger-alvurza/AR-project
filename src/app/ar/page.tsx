@@ -155,10 +155,10 @@ function ARPageContent() {
                       <span>🪨</span> QR-02: Tumpukan 2 — Batu Penyusun
                     </li>
                     <li className="flex items-center gap-2">
-                      <span>⛏️</span> QR-03: Tumpukan 3 — Area Ekskavasi
+                      <span>⛏️</span> QR-03: Tumpukan 3 — Proses Ekskavasi
                     </li>
                     <li className="flex items-center gap-2">
-                      <span>📜</span> QR-04: Tumpukan 4 — Puncak
+                      <span>📜</span> QR-04: Tumpukan 4 — Puncak & Status CB
                     </li>
                   </ul>
                 </div>

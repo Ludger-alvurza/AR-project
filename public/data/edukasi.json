@@ -1,73 +1,89 @@
 [
   {
     "pointId": "tumpukan-1-fondasi",
-    "title": "Fondasi Dasar",
+    "title": "Tumpukan 1 — Fondasi Dasar",
     "questions": [
       {
-        "question": "Apa fungsi fondasi candi?",
-        "answer": "Fondasi adalah struktur dasar yang menopang seluruh badan candi. Pada Candi Klodangan, hanya bagian fondasi dan sebagian dinding bawah yang tersisa. Fondasi ini berukuran 7,5 x 7,5 meter dan berada sekitar 1,2 meter di bawah permukaan tanah saat ditemukan. Inilah elemen utama yang masih bisa dipelajari arkeolog hingga hari ini — menjadi bukti fisik bahwa di lokasi ini pernah berdiri sebuah bangunan suci dari masa Hindu-Buddha."
+        "question": "Apa itu Situs Klodangan?",
+        "answer": "Situs Klodangan adalah situs candi Hindu yang ditemukan secara tidak sengaja pada 3 Juni 1998 oleh warga saat mengolah lahan persawahan di Dusun Klodangan, Desa Sendangtirto, Kecamatan Berbah, Kabupaten Sleman, DIY. Situs ini berada di tepi Sungai Opak dan diperkirakan berasal dari masa Kerajaan Mataram Kuno abad IX–X Masehi."
       },
       {
-        "question": "Mengapa bentuk asli candi belum diketahui?",
-        "answer": "Karena bagian tubuh, atap, dan puncak candi sudah tidak ditemukan — kemungkinan runtuh, hilang dibawa arus sungai, atau terkubur dalam jangka waktu yang sangat lama (lebih dari seribu tahun). Tanpa bagian-bagian tersebut, arkeolog tidak punya cukup bukti fisik untuk merekonstruksi bentuk aslinya secara pasti. Selain itu, tidak ditemukan arca, relief, maupun prasasti yang biasanya bisa membantu identifikasi bentuk dan fungsi candi."
+        "question": "Apa yang dimaksud dengan tumpukan pertama (fondasi dasar)?",
+        "answer": "Tumpukan pertama adalah lapisan batu paling bawah yang berfungsi sebagai fondasi utama candi. Lapisan ini ditemukan sekitar 1,2 meter di bawah permukaan tanah saat ekskavasi. Fondasi ini berbentuk persegi dengan ukuran sekitar 7,5 × 7,5 meter dan menjadi dasar tumpuan seluruh struktur bangunan candi di atasnya."
       },
       {
-        "question": "Seberapa besar area fondasi yang ditemukan?",
-        "answer": "Fondasi yang berhasil diungkap memiliki ukuran 7,5 x 7,5 meter — berbentuk persegi. Ukuran ini menunjukkan bahwa candi ini tergolong candi berukuran kecil hingga sedang, sebanding dengan beberapa candi perwara (candi pendamping) di kompleks Candi Prambanan yang tidak jauh dari lokasi ini."
+        "question": "Bagaimana kondisi fondasi saat ditemukan?",
+        "answer": "Saat ditemukan, fondasi candi masih berada di bawah tanah dan tertutup lapisan sedimen. Tim ekskavasi dari Suaka Peninggalan Sejarah dan Purbakala (SPSP) DIY melakukan penggalian bertahap untuk mengungkap struktur ini. Sebagian besar batu fondasi masih berada di posisi aslinya meskipun ada beberapa yang telah bergeser akibat tekanan tanah dan aktivitas pertanian selama ratusan tahun."
+      },
+      {
+        "question": "Apakah ada temuan lain di lapisan fondasi?",
+        "answer": "Pada lapisan fondasi tidak ditemukan arca, relief, atau prasasti. Ini menjadi salah satu alasan mengapa fungsi dan corak keagamaan (Hindu atau Buddha) candi ini belum bisa dipastikan secara definitif. Yang ditemukan hanya struktur batu andesit dan beberapa fragmen batu putih (batu kapur) yang diduga digunakan sebagai material konstruksi."
       }
     ]
   },
   {
     "pointId": "tumpukan-2-batu",
-    "title": "Batu Penyusun",
+    "title": "Tumpukan 2 — Batu Penyusun",
     "questions": [
       {
-        "question": "Jenis batu apa yang digunakan untuk membangun candi?",
-        "answer": "Candi Klodangan dibangun menggunakan batu andesit — jenis batuan vulkanik yang sangat umum digunakan pada candi-candi di Jawa Tengah dan Yogyakarta. Batu andesit dipilih karena kekerasan dan daya tahannya terhadap cuaca. Selain batu andesit, ditemukan juga batu putih (batu kapur/limestone) yang kemungkinan digunakan sebagai bahan pengisi atau perekat antar blok batu."
+        "question": "Jenis batu apa yang digunakan untuk membangun candi ini?",
+        "answer": "Candi Klodangan dibangun menggunakan batu andesit — batuan vulkanik berwarna abu-abu gelap yang sangat umum digunakan pada candi-candi di Jawa Tengah dan Yogyakarta. Batu andesit dipilih karena kekerasannya yang tinggi, kemampuannya menahan beban, dan ketahanannya terhadap cuaca tropis. Batu ini banyak tersedia di sekitar lereng Gunung Merapi yang tidak jauh dari lokasi situs."
       },
       {
-        "question": "Apa signifikansi batu putih yang ditemukan?",
-        "answer": "Batu putih (batu kapur) yang ditemukan di situs ini memiliki peran penting dalam konstruksi candi. Dalam arsitektur candi Jawa, batu kapur sering digunakan sebagai bahan pengisi (filler) di antara lapisan batu andesit, atau sebagai campuran mortar alami untuk merekatkan blok-blok batu. Kehadirannya membantu arkeolog memahami teknik konstruksi yang digunakan pembangun candi."
+        "question": "Apa fungsi batu putih yang ditemukan di situs ini?",
+        "answer": "Selain batu andesit, ditemukan juga batu putih (batu kapur/limestone) di area situs. Berdasarkan laporan ekskavasi BPCB DIY, batu kapur ini kemungkinan digunakan sebagai material pengisi (filler) di antara lapisan batu andesit atau sebagai bahan konstruksi pendukung. Keberadaan dua jenis batu ini merupakan karakteristik teknik bangunan pada era Mataram Kuno."
       },
       {
-        "question": "Bagaimana teknik penyusunan batu pada candi ini?",
-        "answer": "Batu-batu andesit disusun tanpa menggunakan semen atau perekat modern — teknik ini disebut 'dry masonry' atau pasangan batu kering. Blok-blok batu dipahat presisi agar saling mengunci satu sama lain. Teknik ini sama dengan yang digunakan pada Candi Prambanan dan Borobudur, menunjukkan bahwa pembangun Candi Klodangan memiliki keahlian arsitektur tingkat tinggi."
+        "question": "Bagaimana teknik penyusunan batu pada tumpukan kedua ini?",
+        "answer": "Batu-batu pada tumpukan kedua disusun menggunakan teknik pasangan batu kering (dry masonry) — tanpa menggunakan semen atau perekat buatan. Setiap blok batu dipahat dan diasah dengan presisi tinggi agar saling mengunci satu sama lain. Teknik ini sama dengan yang digunakan pada pembangunan Candi Prambanan dan Borobudur, membuktikan keahlian arsitektur tinggi pembangun Candi Klodangan."
+      },
+      {
+        "question": "Berapa ukuran kompleks batu yang ditemukan?",
+        "answer": "Berdasarkan hasil ekskavasi dua tahap, kompleks situs memiliki luas sekitar 8 × 9,5 meter. Struktur batu yang berhasil diungkap menunjukkan susunan yang teratur dan rapi, sesuai dengan pola arsitektur candi Hindu dari periode Mataram Kuno. Batu-batu ini tersusun membentuk dinding-dinding sisi candi."
       }
     ]
   },
   {
     "pointId": "tumpukan-3-ekskavasi",
-    "title": "Area Ekskavasi",
+    "title": "Tumpukan 3 — Proses Ekskavasi",
     "questions": [
       {
-        "question": "Kapan dan bagaimana proses ekskavasi dilakukan?",
-        "answer": "Ekskavasi dilakukan dalam dua tahap oleh tim dari Suaka Peninggalan Sejarah dan Purbakala (SPSP) DIY — sekarang bernama Balai Pelestarian Cagar Budaya (BPCB) DIY. Tahap pertama berlangsung pada 20–29 Juli 1998, segera setelah penemuan oleh warga. Tahap kedua dilakukan pada 14–19 Februari 2000 untuk memperluas area penggalian dan mendokumentasikan temuan secara lebih lengkap."
+        "question": "Kapan dan siapa yang melakukan ekskavasi Candi Klodangan?",
+        "answer": "Ekskavasi dilakukan oleh tim dari Suaka Peninggalan Sejarah dan Purbakala (SPSP) DIY — yang kini bernama Balai Pelestarian Cagar Budaya (BPCB) DIY. Ekskavasi dilakukan dalam dua tahap: Tahap I pada 20–29 Juli 1998 (segera setelah laporan penemuan), dan Tahap II pada 14–19 Februari 2000 untuk memperluas area penggalian."
       },
       {
-        "question": "Mengapa candi ini disebut 'situs yang belum selesai dibangun'?",
-        "answer": "Berdasarkan temuan ekskavasi, beberapa arkeolog menduga bahwa Candi Klodangan tidak pernah selesai dibangun secara penuh. Indikasi ini terlihat dari: (1) hanya fondasi dan sebagian kecil dinding yang ditemukan, tanpa ada bukti runtuhan bagian atas di sekitarnya; (2) tidak ditemukan arca, relief, atau ornamen yang biasanya ada pada candi yang sudah selesai; (3) pola struktur yang ditemukan mengindikasikan proses pembangunan yang terhenti. Kemungkinan candi ini ditinggalkan oleh pendukung budayanya sebelum pembangunan rampung."
+        "question": "Bagaimana proses ekskavasi dilakukan secara teknis?",
+        "answer": "Proses ekskavasi mengikuti standar arkeologi baku: dimulai dengan pembersihan area (land clearing), penentuan titik koordinat dan kotak galian, penggalian berlapis secara hati-hati mengikuti stratigrafi tanah, dokumentasi foto dan gambar di setiap temuan, serta pencatatan detail setiap artefak dan struktur yang ditemukan. Setiap lapisan tanah yang digali didokumentasikan untuk memahami kronologi pembentukan situs."
       },
       {
-        "question": "Apa saja yang ditemukan selama ekskavasi?",
-        "answer": "Selama proses ekskavasi, tim arkeologi menemukan: struktur fondasi berukuran 7,5 x 7,5 meter, sisa-sisa dinding bagian bawah dari batu andesit, batu-batu putih (batu kapur) yang diduga merupakan material konstruksi, serta beberapa fragmen batu candi yang tersebar di area sekitar. Tidak ditemukan arca, relief, prasasti, maupun artefak logam — sehingga fungsi dan corak keagamaan candi (Hindu atau Buddha) belum bisa dipastikan secara definitif."
+        "question": "Mengapa candi ini diduga belum selesai dibangun?",
+        "answer": "Berdasarkan temuan ekskavasi, beberapa indikasi menunjukkan candi ini tidak pernah rampung dibangun: (1) hanya fondasi dan sebagian dinding bawah yang ditemukan tanpa bukti runtuhan bagian atas di sekitarnya; (2) tidak ada arca, relief, atau ornamen yang biasanya ada pada candi selesai; (3) tidak ditemukan bekas lantai atau halaman candi yang biasanya ada. Kemungkinan pembangunan terhenti karena perubahan politik atau runtuhnya Kerajaan Mataram Kuno."
+      },
+      {
+        "question": "Apa saja temuan penting selama ekskavasi?",
+        "answer": "Temuan utama ekskavasi adalah: struktur fondasi candi berukuran 7,5 × 7,5 meter dari batu andesit, sisa-sisa dinding bawah yang tersusun dalam beberapa lapisan (tumpukan), batu-batu putih (kapur) sebagai material konstruksi, serta fragmen-fragmen batu yang tersebar di sekitar situs. Tidak ditemukan arca, prasasti, logam, atau artefak lainnya yang bisa membantu identifikasi lebih lanjut tentang candi ini."
       }
     ]
   },
   {
     "pointId": "tumpukan-4-status",
-    "title": "Status Cagar Budaya",
+    "title": "Tumpukan 4 — Puncak & Status Cagar Budaya",
     "questions": [
       {
+        "question": "Apa yang diketahui tentang bagian puncak candi?",
+        "answer": "Bagian puncak (atap dan mahkota) candi sama sekali tidak ditemukan di lokasi. Ini merupakan salah satu misteri utama Candi Klodangan — apakah puncaknya sudah runtuh dan terkubur di tempat lain, hanyut terbawa Sungai Opak yang berada di dekatnya, atau memang candi tidak pernah mencapai tahap pembangunan puncak. Ketiadaan bagian puncak membuat rekonstruksi bentuk asli candi sangat sulit dilakukan."
+      },
+      {
+        "question": "Apa hubungan Candi Klodangan dengan Sungai Opak?",
+        "answer": "Lokasi Candi Klodangan yang berada di tepi Sungai Opak diduga bukan kebetulan. Dalam tradisi Hindu, bangunan suci sering didirikan di dekat sumber air yang dianggap sakral. Namun, kedekatan dengan sungai juga menjadi ancaman — banjir dan pergeseran tanah selama berabad-abad kemungkinan menyebabkan sebagian struktur candi hanyut atau terkubur jauh dari posisi aslinya."
+      },
+      {
         "question": "Apa status hukum Candi Klodangan saat ini?",
-        "answer": "Candi Klodangan telah ditetapkan sebagai Cagar Budaya yang dilindungi oleh undang-undang. Pengelolaannya berada di bawah Balai Pelestarian Cagar Budaya (BPCB) Daerah Istimewa Yogyakarta. Sebagai cagar budaya, situs ini dilindungi dari perusakan, pemindahan, atau pengambilan material tanpa izin resmi."
+        "answer": "Candi Klodangan telah ditetapkan sebagai Cagar Budaya yang dilindungi negara berdasarkan Undang-Undang No. 11 Tahun 2010 tentang Cagar Budaya. Pengelolaannya berada di bawah Balai Pelestarian Cagar Budaya (BPCB) Daerah Istimewa Yogyakarta. Sebagai cagar budaya, situs ini dilindungi dari perusakan, pemindahan, atau pengambilan material tanpa izin resmi dari pihak berwenang."
       },
       {
-        "question": "Siapa yang bertanggung jawab mengelola situs ini?",
-        "answer": "Pengelolaan dan pelestarian Candi Klodangan menjadi tanggung jawab Balai Pelestarian Cagar Budaya (BPCB) Daerah Istimewa Yogyakarta, yang merupakan unit pelaksana teknis di bawah Direktorat Jenderal Kebudayaan, Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia. BPCB DIY bertugas melakukan pendataan, pemeliharaan, dan pengawasan terhadap seluruh cagar budaya di wilayah DIY."
-      },
-      {
-        "question": "Mengapa situs ini penting untuk dilestarikan?",
-        "answer": "Meskipun kondisinya tidak utuh, Candi Klodangan memiliki nilai sejarah dan ilmiah yang tinggi. Situs ini menjadi bukti persebaran budaya Hindu-Buddha di wilayah Yogyakarta pada abad ke-9 hingga ke-10 Masehi, sezaman dengan masa kejayaan Kerajaan Mataram Kuno yang membangun Candi Prambanan dan Borobudur. Pelestariannya penting untuk penelitian arkeologi masa depan dan edukasi publik tentang warisan budaya Indonesia."
+        "question": "Mengapa Candi Klodangan penting meskipun kondisinya tidak utuh?",
+        "answer": "Meskipun kondisinya jauh dari utuh, Candi Klodangan memiliki nilai sejarah dan ilmiah yang tinggi. Situs ini menjadi bukti persebaran budaya Hindu-Buddha di wilayah Kabupaten Sleman pada abad IX–X Masehi, sezaman dengan masa kejayaan Kerajaan Mataram Kuno yang juga membangun Candi Prambanan (hanya sekitar 5 km dari situs ini). Penelitian lebih lanjut di masa depan — dengan teknologi yang lebih canggih — diharapkan bisa mengungkap lebih banyak informasi tentang candi misterius ini."
       }
     ]
   }

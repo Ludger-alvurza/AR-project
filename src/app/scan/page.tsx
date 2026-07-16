@@ -77,8 +77,8 @@ export default function ScanPage() {
   const layers = [
     { num: 1, icon: "🏛️", label: "Fondasi Dasar" },
     { num: 2, icon: "🪨", label: "Batu Penyusun" },
-    { num: 3, icon: "⛏️", label: "Area Ekskavasi" },
-    { num: 4, icon: "📜", label: "Status Cagar Budaya" },
+    { num: 3, icon: "⛏️", label: "Proses Ekskavasi" },
+    { num: 4, icon: "📜", label: "Puncak & Status CB" },
   ];
 
   return (
