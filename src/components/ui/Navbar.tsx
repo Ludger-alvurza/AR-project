@@ -35,6 +35,13 @@ export default function Navbar() {
               Jelajah Virtual
             </Link>
             <Link
+              href="/denah"
+              className="px-4 py-2 rounded-lg text-dark font-medium hover:bg-green-light hover:text-green-primary transition-all duration-200"
+              id="nav-denah"
+            >
+              Denah Situs
+            </Link>
+            <Link
               href="/#tentang"
               className="px-4 py-2 rounded-lg text-dark font-medium hover:bg-green-light hover:text-green-primary transition-all duration-200"
               id="nav-tentang"
@@ -80,7 +87,7 @@ export default function Navbar() {
         {/* Mobile Menu */}
         <div
           className={`md:hidden overflow-hidden transition-all duration-300 ${
-            isOpen ? "max-h-60 pb-4" : "max-h-0"
+            isOpen ? "max-h-80 pb-4" : "max-h-0"
           }`}
         >
           <div className="flex flex-col gap-1 pt-2 border-t border-green-light">
@@ -107,6 +114,14 @@ export default function Navbar() {
               id="nav-mobile-jelajah"
             >
               🗺️ Jelajah Virtual
+            </Link>
+            <Link
+              href="/denah"
+              onClick={() => setIsOpen(false)}
+              className="px-4 py-3 rounded-lg text-dark font-medium hover:bg-green-light transition-colors"
+              id="nav-mobile-denah"
+            >
+              📐 Denah Situs
             </Link>
             <Link
               href="/#tentang"

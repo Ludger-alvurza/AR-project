@@ -43,6 +43,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/denah"
+                  className="text-white/60 hover:text-green-mid transition-colors text-sm"
+                >
+                  Denah Situs
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/#tentang"
                   className="text-white/60 hover:text-green-mid transition-colors text-sm"
                 >
