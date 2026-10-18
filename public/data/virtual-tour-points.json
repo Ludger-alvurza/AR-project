@@ -22,7 +22,7 @@
     "title": "Area Ekskavasi",
     "icon": "⛏️",
     "position": { "x": 72, "y": 30 },
-    "shortInfo": "Proses penggalian arkeologi dua tahap oleh tim SPSP/BPCB DIY — Tahap I pada 20–29 Juli 1998, dan Tahap II pada 14–19 Februari 2000. Area situs yang berhasil dipetakan sekitar 8 × 9,5 meter.",
+    "shortInfo": "Proses penggalian arkeologi dua tahap oleh tim SPSP/BP Kebudayaan DIY — Tahap I pada 20–29 Juli 1998, dan Tahap II pada 14–19 Februari 2000. Area situs yang berhasil dipetakan sekitar 8 × 9,5 meter.",
     "detailInfo": "Ekskavasi mengikuti standar arkeologi baku: pembersihan area, penentuan titik koordinat dan kotak galian, penggalian berlapis mengikuti stratigrafi tanah, serta dokumentasi foto dan gambar di setiap lapisan temuan. Tidak ditemukan arca, relief, prasasti, maupun artefak logam — sehingga candi ini diduga tidak pernah rampung dibangun sebelum ditinggalkan pendukungnya.",
     "edukasiId": "tumpukan-3-ekskavasi"
   },
@@ -32,7 +32,7 @@
     "icon": "🌿",
     "position": { "x": 30, "y": 15 },
     "shortInfo": "Tanaman hijau yang tumbuh di sekeliling situs membantu melindungi struktur candi dari erosi dan memberikan batas visual area cagar budaya.",
-    "detailInfo": "Vegetasi yang tumbuh mengelilingi situs berfungsi membantu mencegah erosi tanah di sekitar struktur batu yang masih tersisa. Situs Candi Klodangan kini berada di tengah lingkungan yang dikelola sebagai kawasan cagar budaya di bawah pengawasan Balai Pelestarian Cagar Budaya (BPCB) Daerah Istimewa Yogyakarta.",
+    "detailInfo": "Vegetasi yang tumbuh mengelilingi situs berfungsi membantu mencegah erosi tanah di sekitar struktur batu yang masih tersisa. Situs Candi Klodangan kini berada di tengah lingkungan yang dikelola sebagai kawasan cagar budaya di bawah pengawasan BP Kebudayaan DIY.",
     "edukasiId": "tumpukan-1-fondasi"
   },
   {
@@ -41,7 +41,7 @@
     "icon": "📐",
     "position": { "x": 75, "y": 72 },
     "shortInfo": "Sudut-sudut struktur fondasi yang berhasil diungkap selama ekskavasi. Keberadaan sudut bangunan di beberapa kotak galian membantu tim arkeolog memetakan denah keseluruhan candi.",
-    "detailInfo": "Berdasarkan laporan ekskavasi BPCB DIY, sudut-sudut bangunan ditemukan di beberapa titik galian yang memungkinkan tim arkeolog merekonstruksi denah candi secara horizontal. Denah bangunan berbentuk bujur sangkar berukuran 7,5 × 7,5 meter dengan penampil, sedangkan bagian batur (soubacement) berukuran 8 × 8 meter. Candi ini berada tidak jauh dari Candi Prambanan — sekitar 5 km ke arah barat — yang dibangun pada era yang sama.",
+    "detailInfo": "Berdasarkan laporan ekskavasi BP Kebudayaan DIY, sudut-sudut bangunan ditemukan di beberapa titik galian yang memungkinkan tim arkeolog merekonstruksi denah candi secara horizontal. Denah bangunan berbentuk bujur sangkar berukuran 7,5 × 7,5 meter dengan penampil, sedangkan bagian batur (soubacement) berukuran 8 × 8 meter. Candi ini berada tidak jauh dari Candi Prambanan — sekitar 5 km ke arah barat — yang dibangun pada era yang sama.",
     "edukasiId": "tumpukan-1-fondasi"
   }
 ]

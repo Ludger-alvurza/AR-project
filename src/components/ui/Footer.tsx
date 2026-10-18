@@ -88,7 +88,7 @@ export default function Footer() {
               </li>
               <li>
                 <span className="text-white/40 text-sm">
-                  BPCB Daerah Istimewa Yogyakarta
+                  BP Kebudayaan DIY
                 </span>
               </li>
             </ul>

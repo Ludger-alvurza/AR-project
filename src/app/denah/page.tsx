@@ -111,7 +111,7 @@ export default function DenahPage() {
             <p className="reveal text-stone-candi text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
               Gambar teknis denah dan potongan Situs Klodangan yang dibuat oleh{" "}
               <span className="font-semibold text-green-primary">
-                Balai Pelestarian Kebudayaan D.I. Yogyakarta
+                BP Kebudayaan DIY
               </span>{" "}
               sebagai dokumentasi arkeologi resmi.
             </p>
@@ -168,7 +168,7 @@ export default function DenahPage() {
               >
                 <Image
                   src={imagePath}
-                  alt="Denah dan Potongan Situs Klodangan - Balai Pelestarian Kebudayaan D.I. Yogyakarta"
+                  alt="Denah dan Potongan Situs Klodangan - BP Kebudayaan DIY"
                   width={1920}
                   height={1080}
                   className={`w-full h-auto ${isFullscreen ? "object-contain max-h-screen w-auto mx-auto" : ""}`}
@@ -259,7 +259,7 @@ export default function DenahPage() {
             {/* Image caption */}
             <div className="mt-4 text-center">
               <p className="text-stone-candi text-xs italic">
-                Sumber: Balai Pelestarian Kebudayaan D.I. Yogyakarta — Nomor
+                Sumber: BP Kebudayaan DIY — Nomor
                 Reg. YEP.06.P.03652
               </p>
             </div>

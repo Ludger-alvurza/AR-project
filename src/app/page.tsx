@@ -302,14 +302,22 @@ export default async function HomePage() {
                   Prambanan dan Borobudur.
                 </p>
                 <p className="reveal">
-                  Saat ini hanya tersisa struktur fondasi berukuran 7,5 × 7,5
-                  meter. Bentuk asli candi belum diketahui dan diduga tidak
-                  pernah selesai dibangun. Situs ini dikelola oleh{" "}
-                  <strong className="text-dark">
-                    Balai Pelestarian Cagar Budaya (BPCB) DIY
-                  </strong>
-                  .
-                </p>
+                   Saat ini hanya tersisa struktur fondasi berukuran{" "}
+                   <strong className="text-dark">7,5 × 7,5 meter</strong> dengan
+                   area situs mencapai{" "}
+                   <strong className="text-dark">8 × 9,5 meter</strong>. Bentuk
+                   asli candi belum diketahui dan diduga tidak pernah selesai
+                   dibangun — bagian puncak diduga hanyut terbawa Sungai Opak.
+                   Situs dikelola oleh{" "}
+                   <strong className="text-dark">
+                     BP Kebudayaan DIY
+                   </strong>
+                   {" "}dan dilindungi{" "}
+                   <strong className="text-dark">
+                     UU No. 11 Tahun 2010 tentang Cagar Budaya
+                   </strong>
+                   .
+                 </p>
               </div>
 
               <div className="reveal mt-6 flex flex-wrap gap-3">
@@ -332,11 +340,13 @@ export default async function HomePage() {
                   </h3>
                   <div className="grid grid-cols-2 gap-4 mt-6">
                     {[
-                      { label: "Ditemukan", value: "1998" },
-                      { label: "Usia", value: "Abad IX-X" },
-                      { label: "Fondasi", value: "7,5 × 7,5 m" },
-                      { label: "Lokasi", value: "Sleman, DIY" },
-                    ].map((fact) => (
+                       { label: "Ditemukan", value: "1998" },
+                       { label: "Usia", value: "Abad IX–X" },
+                       { label: "Fondasi", value: "7,5 × 7,5 m" },
+                       { label: "Area Situs", value: "8 × 9,5 m" },
+                       { label: "Puncak", value: "Tidak ada" },
+                       { label: "Status", value: "Cagar Budaya" },
+                     ].map((fact) => (
                       <div
                         key={fact.label}
                         className="bg-green-pale/80 rounded-xl p-3 backdrop-blur-sm"
